@@ -44,7 +44,7 @@ import { Box, Toolbar } from "@mui/material";
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 color="inherit"
-                > Find Receipes</IconButton>
+                > Find Recipes</IconButton>
           </Stack>
         </Toolbar>
     </AppBar>     
