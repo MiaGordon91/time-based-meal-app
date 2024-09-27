@@ -8,6 +8,9 @@ const config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-bodoni_moda)']
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
