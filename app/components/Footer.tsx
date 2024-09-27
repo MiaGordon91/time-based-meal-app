@@ -1,20 +1,23 @@
+"use client"
+
 import { Typography } from "../MTailwind";
  
     const footer = () => {
     return (
-        <div style={{ position: "absolute", bottom: 0, width:"100%" }} className="bg-gray-100">
-            <footer className="container mx-auto py-6 flex w-full flex-row flex-wrap items-center justify-center bg-gray-100">
-                <Typography color="blue-gray" className="font-normal">
-                    &copy; 2023 Find Me A Recipe
-                </Typography>
-
-                <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
+            <footer className="lg:fixed bottom-0 flex w-full flex-row wrap items-center justify-center bg-gray-100 py-2 lg:py-6 selection:text-center mt-8">
+                <ul className="flex flex-wrap justify-center gap-x-8">
+                
+                    <li>
+                        <Typography className="text-xs md:text-small lg:text-base">
+                            &copy; 2023 Find Me A Recipe
+                        </Typography>
+                    </li>
+                
                     <li>
                         <Typography
                             as="a"
                             href="#"
-                            color="blue-gray"
-                            className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+                            className="text-xs md:text-small lg:text-base"
                         >
                             About Us
                         </Typography>
@@ -24,8 +27,7 @@ import { Typography } from "../MTailwind";
                         <Typography
                             as="a"
                             href="#"
-                            color="blue-gray"
-                            className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+                            className="text-xs md:text-small lg:text-base"
                         >
                             License
                         </Typography>
@@ -35,8 +37,7 @@ import { Typography } from "../MTailwind";
                         <Typography
                             as="a"
                             href="#"
-                            color="blue-gray"
-                            className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+                            className="text-xs md:text-small lg:text-base"
                         >
                             Contribute
                         </Typography>
@@ -46,8 +47,7 @@ import { Typography } from "../MTailwind";
                         <Typography
                             as="a"
                             href="#"
-                            color="blue-gray"
-                            className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+                            className="text-xs md:text-small lg:text-base"
                         >
                             Contact Us
                         </Typography>
@@ -55,7 +55,6 @@ import { Typography } from "../MTailwind";
 
                 </ul>
             </footer>
-        </div>
     );
     }
     export default footer;
