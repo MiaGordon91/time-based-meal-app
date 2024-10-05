@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { Box, Toolbar } from "@mui/material";
 import { SetStateAction, useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
    
@@ -29,23 +30,21 @@ import Menu from '@mui/material/Menu';
     return (
       <>
       <Box sx={{ flexGrow: 1 }}>
-      <AppBar className="py-4 bg-inherit" position="static">
+      <AppBar className="py-2 sm:py-4 bg-inherit" position="static">
         <Toolbar>
+          <RestaurantIcon className="text-black" sx={{ fontSize: {xs:30, lg:40}}}/>
           <Typography
-            variant="h4"
-            noWrap
+            className="text-xl lg:text-2xl xl:text-3xl"
             component="a"
             href="#app-bar-with-responsive-menu"
-            fontFamily= 'monospace'
             sx={{
-                mr: 2,
-                display: {xs:"flex"},
-                fontFamily: 'monospace',
+                mx: 1,
+                display: {xs:"none", sm:"flex"},
                 fontWeight: 700,
-                letterSpacing: '.5rem',
+                letterSpacing: '.2rem',
                 color: 'black',
             }}
-          > LOGO </Typography>
+          > FoodieGenie </Typography>
 
           <Box className="flex justify-end" sx={{flexGrow:1, display: {xs:"flex", sm: "none"} }}>
             <IconButton
