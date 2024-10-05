@@ -10,10 +10,10 @@ const TopRecipeGrid = () => {
         spacing={{ xs: 2 }}
         >
           <Grid size={{xs: 12}}>
-            <h1 className="font-extrabold text-small md:text-base lg:text-lg w-full text-center">This Month's Popular Recipes!</h1>
+            <h1 className="font-extrabold text-lg md:text-3xl w-full text-center">This Month's Popular Recipes!</h1>
           </Grid>
           <Grid size={{xs: 12}} >
-            <p className="text-xs sm:text-base w-full text-center">See what everyone's raving about this month. These are our most popular recipes - tried, tested and utterly delicious!</p>
+            <p className="text-xs sm:text-base md:text-lg w-full text-center mb-4">See what everyone's raving about this month. These are our most popular recipes - tried, tested and utterly delicious!</p>
           </Grid>
           <Grid size={{ xs:6, md: 3}}>
             <RecipeCardSummary />

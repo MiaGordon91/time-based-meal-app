@@ -4,7 +4,7 @@ import { Typography } from "../MTailwind";
  
     const footer = () => {
     return (
-            <footer className="lg:fixed bottom-0 flex w-full flex-row wrap items-center justify-center bg-gray-100 py-2 lg:py-6 selection:text-center mt-8">
+            <footer className="bottom-0 flex w-full flex-row wrap items-center justify-center bg-gray-100 py-2 lg:py-6 selection:text-center mt-8">
                 <ul className="flex flex-wrap justify-center gap-x-8">
                 
                     <li>

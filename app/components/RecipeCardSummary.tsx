@@ -5,7 +5,6 @@ import { ExpandMore } from '@mui/icons-material'
 import Box from '@mui/material/Box'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-import CardHeader from '@mui/material/CardHeader'
 import CardMedia from '@mui/material/CardMedia'
 import Collapse from '@mui/material/Collapse'
 import Typography from '@mui/material/Typography'
@@ -29,14 +28,6 @@ const RecipeCardSummary = () => {
             image='/images/paella.jpg'
             alt="Paella dish"
         />
-        {/* <CardHeader
-          avatar={
-              <Avatar sx={{ bgcolor: pink[500], display: { xs: 'none', sm: 'block' } }} aria-label="recipe">
-                R
-              </Avatar>
-            }
-        >
-        </CardHeader> */}
         <Box className="rounded-b-lg shadow-2xl divide-y divide-solid">
         <CardContent className="pb-0">
             <Typography className="text-xs md:text-base lg:text-lg font-bold pb-2" sx={{ color: 'text.secondary' }}>
@@ -92,8 +83,6 @@ const RecipeCardSummary = () => {
           </Typography>
         </CardContent>
       </Collapse>
-
-      {/* // add expand option with icon or button*/}
     </Card>
   )
 }
