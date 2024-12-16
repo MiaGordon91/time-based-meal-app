@@ -9,7 +9,7 @@ import { Typography } from "../MTailwind";
                 
                     <li>
                         <Typography className="text-xs md:text-small lg:text-base">
-                            &copy; 2023 Find Me A Recipe
+                            &copy; 2023 FoodieGenie
                         </Typography>
                     </li>
                 

@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
    
 
-  const pages = ["Find Recipes", "My Account"];
+  const pages = ["Home", "Find Recipes", "My Account"];
 
 
   const navBar = () => {

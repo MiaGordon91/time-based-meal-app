@@ -21,21 +21,23 @@ const RecipeCardSummary = () => {
   };
   
   return (
+    <>
     <Card>
-      <CardMedia
+      <CardMedia 
+            className="rounded-lg"
             component="img"
-            height="120"
-            image='/images/paella.jpg'
+            height="auto"
+            image='/images/pasta.jpg'
             alt="Paella dish"
         />
-        <Box className="rounded-b-lg shadow-2xl divide-y divide-solid">
+        <Box className="shadow-2xl divide-y divide-solid">
         <CardContent className="pb-0">
-            <Typography className="text-xs md:text-base lg:text-lg font-bold pb-2" sx={{ color: 'text.secondary' }}>
+            <Typography className="text-xs md:text-base lg:text-lg font-bold pb-2">
             Shrimp and Chorizo Paella
             </Typography>
         </CardContent>
         <CardContent sx={{ display: { xs: 'none', sm: 'block' }}}>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            <Typography variant="body2">
             This impressive paella is a perfect party dish and a fun meal to cook
             together with your guests. Add 1 cup of frozen peas along with the mussels,
             if you like.
@@ -84,6 +86,7 @@ const RecipeCardSummary = () => {
         </CardContent>
       </Collapse>
     </Card>
+    </>
   )
 }
 
