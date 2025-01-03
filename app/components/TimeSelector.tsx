@@ -1,23 +1,49 @@
 
-import { Box } from '@mui/material';
-import { Select, Option } from '../MTailwind';
+import { Box, SelectChangeEvent } from '@mui/material';
+import { Select, Option, MenuItem } from '../MTailwind';
+import { useState } from 'react';
 
-const timeSelector = () => {
+const TimeSelector = ({values, selectedValue, onValueChange}: {values:string[][], selectedValue: string, onValueChange: any} ) => {
+
+
+  const [time, setTime] = useState(selectedValue);
+
+  //update the state and notify the parent component by 
+  // invoking the onValueChange callback 
+
+  //MTailWind Select provides the selected value straight to the OnChange callback
+  //so event.target.value isnt required
+  const handleChange = (selectedTime: any) => {
+
+    setTime(selectedTime);
+
+    if(onValueChange){
+      onValueChange(selectedTime);
+    }
+  };
+
+  
   return (
     <>
     <Box className="justify-center my-5">
         <Select 
           className="bg-white font-bold"
           color="purple"
-          label="Select time frame" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-            <Option>20 minutes</Option>
-            <Option>30 minutes</Option>
-            <Option>45 minutes</Option>
-            <Option>I'm flexible</Option>
+          label="Select time frame" 
+          // controlled component: value prop it tied to the time state
+          value={time}
+          name={time}
+          onChange={handleChange}
+          >
+          {values.map(([value, text]) => (
+            <Option value={value}>
+              {text}
+            </Option>
+          ))}
         </Select>
     </Box>
     </>     
   )
 }
 
-export default timeSelector
+export default TimeSelector
