@@ -1,12 +1,16 @@
 
-import { Box, SelectChangeEvent } from '@mui/material';
-import { Select, Option, MenuItem } from '../MTailwind';
+import { Box } from '@mui/material';
+import { Select, Option } from '../MTailwind';
 import { useState } from 'react';
 
-const TimeSelector = ({values, selectedValue, onValueChange}: {values:string[][], selectedValue: string, onValueChange: any} ) => {
+interface TimeSelectorInterface {
+  values:string[][], 
+  onValueChange: (setHandleTime: string) => void
+}
 
+const TimeSelector: React.FC<TimeSelectorInterface> = ({values, onValueChange}) => {
 
-  const [time, setTime] = useState(selectedValue);
+  const [time, setTime] = useState("");
 
   //update the state and notify the parent component by 
   // invoking the onValueChange callback 

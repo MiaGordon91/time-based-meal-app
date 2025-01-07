@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TimeSelector from './TimeSelector'
 import FindRecipeButton from './FindRecipeButton'
 import { Box, useMediaQuery, useTheme } from '@mui/material'
@@ -8,47 +8,55 @@ const TimeGrid = () => {
 
   const theme = useTheme();
   
-    // Media queries for different breakpoints
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('md')); // sm and below
-    
-    // Determine the size based on screen width
-    const checkBoxSize = isSmallScreen ? 'small' :'medium';
-    const labelFontSize = isSmallScreen ? '0.75rem':'1.25rem';
-
-    const handleDietaries = (selectedItems: any) => {
-        console.log(selectedItems);
-    }
+  // Media queries for different breakpoints
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md')); // sm and below
+  
+  // Determine the size based on screen width
+  const checkBoxSize = isSmallScreen ? 'small' :'medium';
+  const labelFontSize = isSmallScreen ? '0.75rem':'1.25rem';
 
 
-    const timeOptions = [
-      ['20', '20 minutes'],
-      ['30', '30 minutes'],
-      ['45', '45 minutes'],
-      ['60', '60 minutes'],
-      ['0', 'I\'m flexible']
-    ];
+  const timeOptions = [
+    ['20', '20 minutes'],
+    ['30', '30 minutes'],
+    ['45', '45 minutes'],
+    ['60', '60 minutes'],
+    ['0', 'I\'m flexible']
+  ];
 
-    const handleTime = (selectedTime: string) => {
-      console.log(selectedTime);
-    }
-    
+  //update state in parent component
+  const [handleDietaries, setHandleDietaries] = useState<string[]>([]);
+  const [handleTime, setHandleTime] = useState("");
+  const [matchedRecipes, setMatchedRecipes] = useState<number[]>([]);
+
+  const handleDietarySelection = (selectedItems: string[]) => {
+    setHandleDietaries(selectedItems);
+  }
+
+  const handleRecipeIds = (suitableRecipeIds: number[]) => {
+    setMatchedRecipes(suitableRecipeIds);
+  }
 
   return (
     <>
     <Box className="flex flex-col justify-center gap-x-4 sm:mb-7 md:mt-6 bg-gray-100">
       <DietaryCheckBox 
-      onSelectionChange={handleDietaries} 
-      checkBoxSize={checkBoxSize}
-      labelFontSiz={labelFontSize}
+        onSelectionChange={handleDietarySelection} 
+        checkBoxSize={checkBoxSize}
+        labelFontSiz={labelFontSize}
       />
 
       <Box className="justify-center sm:flex sm:flex-row sm:gap-x-2 md:mb-8">
         <TimeSelector 
-         values={timeOptions}
-         selectedValue="0"
-         onValueChange={handleTime}
+          values={timeOptions}
+          onValueChange={setHandleTime}
         />
-        <FindRecipeButton />
+
+        <FindRecipeButton 
+          values={'Find Me Recipes'}
+          onClickCallBack={handleRecipeIds}
+          data={[handleDietaries, handleTime]}
+        />
       </Box>
 
     </Box>   

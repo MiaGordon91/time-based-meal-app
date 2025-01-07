@@ -2,44 +2,49 @@ import { Box, FormControl, FormControlLabel, Checkbox, Typography, useMediaQuery
 import { pink } from '@mui/material/colors'
 import { useState } from 'react';
 
-const DietaryCheckBox = ({onSelectionChange, checkBoxSize, labelFontSiz}: {onSelectionChange: any, checkBoxSize: any, labelFontSiz: any}) => {
+interface DietaryCheckBoxProps {
+  onSelectionChange: (suitableRecipeIds: string[]) => void, //callback function to update state in parent
+  checkBoxSize: 'small' | 'medium', 
+  labelFontSiz: '0.75rem' | '1.25rem',
+}
 
+const DietaryCheckBox: React.FC<DietaryCheckBoxProps> = ({onSelectionChange, checkBoxSize, labelFontSiz}) => {
 
   // handle checkbox groups 
   // define dietaries object which matches the value of each checkbox below 
   const [dietaries, setDietaries] = useState({
-    Vegan: false, 
-    Vegetarian: false, 
-    GlutenFree: false, 
-    LactoseIntolerant: false, 
-    None: false
+    vegan: false, 
+    vegetarian: false, 
+    glutenFree: false, 
+    lactoseIntolerant: false, 
+    none: false
   });
 
-  const { Vegan, Vegetarian, GlutenFree, LactoseIntolerant, None } = dietaries;
+  const { vegan, vegetarian, glutenFree, lactoseIntolerant, none } = dietaries;
 
-  const handleDietarySelection = (event: { target: { value: any; checked: any; }; }) => {
+  const handleDietarySelection = (event: { target: { value: string; checked: boolean; }; }) => {
       
-      //Access the value and checked property directly to update and manage the state
-      const {value, checked} = event.target;
+    //Access the value and checked property directly to update and manage the state
+    const {value, checked} = event.target;
 
-      //Update the dietary selection state
-      setDietaries((prevDietaries) => ({
+    //Update the dietary selection state
+    setDietaries((prevDietaries) => ({
 
-          ...prevDietaries, 
-          [value]: checked,
+        ...prevDietaries, 
+        [value]: checked,
       
     }));
 
     // call the parent component callback and pass update dietary state
     if(onSelectionChange) {
 
-      // loop over key of dietary object, if the key === the value of the checked 
+      // loop over key of dietary object, if the key === the value of the 
       // selected checkbox then update as checked - its a way to filter the selected items
 
-      // This creates a new state object with each change of behaviour instead
-      // of mutating existing one
+      // This creates a new state object with each change of behaviour (immutability) instead
+      // of mutating existing one - setting checked properly allows dynamic behaviour 
       const selectedItems = Object.keys(dietaries).filter(
-        (key) => key === value ? checked : dietaries[key]);
+        (key) => key === value ? checked : dietaries[key as keyof typeof dietaries]); // required to tell TS that the key also exists in the dietaries object
       
         //send updated items to callback as an array
         onSelectionChange(selectedItems);
@@ -59,9 +64,9 @@ const DietaryCheckBox = ({onSelectionChange, checkBoxSize, labelFontSiz}: {onSel
             className="flex flex-row justify-center items-center"
             aria-labelledby="demo-row-radio-buttons-group-label"
         >
-          <FormControlLabel value="Vegan" control={
+          <FormControlLabel value="vegan" control={
             <Checkbox 
-              checked={Vegan}
+              checked={vegan}
               onChange={handleDietarySelection}
               size={checkBoxSize}
               sx={{
@@ -77,9 +82,9 @@ const DietaryCheckBox = ({onSelectionChange, checkBoxSize, labelFontSiz}: {onSel
               '& .MuiFormControlLabel-label': { fontSize: labelFontSiz },
             }}        
           />
-          <FormControlLabel value="Vegetarian" control={
+          <FormControlLabel value="vegetarian" control={
             <Checkbox 
-              checked={Vegetarian}
+              checked={vegetarian}
               onChange={handleDietarySelection}
               size={checkBoxSize}
               sx={{
@@ -94,9 +99,9 @@ const DietaryCheckBox = ({onSelectionChange, checkBoxSize, labelFontSiz}: {onSel
               '& .MuiFormControlLabel-label': { fontSize: labelFontSiz },
             }}
             />
-          <FormControlLabel value="GlutenFree" control={
+          <FormControlLabel value="glutenFree" control={
             <Checkbox
-              checked={GlutenFree}
+              checked={glutenFree}
               onChange={handleDietarySelection}
               size={checkBoxSize} 
               sx={{
@@ -110,9 +115,9 @@ const DietaryCheckBox = ({onSelectionChange, checkBoxSize, labelFontSiz}: {onSel
             sx={{
               '& .MuiFormControlLabel-label': { fontSize: labelFontSiz },
             }}/>
-          <FormControlLabel value="LactoseIntolerant" control={
+          <FormControlLabel value="lactoseIntolerant" control={
             <Checkbox 
-              checked={LactoseIntolerant}
+              checked={lactoseIntolerant}
               onChange={handleDietarySelection}
               size={checkBoxSize}
               sx={{
@@ -126,9 +131,9 @@ const DietaryCheckBox = ({onSelectionChange, checkBoxSize, labelFontSiz}: {onSel
             sx={{
               '& .MuiFormControlLabel-label': { fontSize: labelFontSiz },
             }}/>
-          <FormControlLabel value="None" control={
+          <FormControlLabel value="none" control={
               <Checkbox 
-                checked={None}
+                checked={none}
                 onChange={handleDietarySelection}
                 size={checkBoxSize}
                 sx={{

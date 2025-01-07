@@ -1,7 +1,6 @@
 import React from 'react'
 import RecipeCardSummary from './RecipeCardSummary'
 import Grid from '@mui/material/Grid2'
-import { Box } from '@mui/material'
 
 
 const RecipeCarousel = () => {
