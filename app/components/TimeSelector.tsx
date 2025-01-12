@@ -12,8 +12,7 @@ const TimeSelector: React.FC<TimeSelectorInterface> = ({values, onValueChange}) 
 
   const [time, setTime] = useState("");
 
-  //update the state and notify the parent component by 
-  // invoking the onValueChange callback 
+  //update the state and notify the parent component by invoking the onValueChange callback 
 
   //MTailWind Select provides the selected value straight to the OnChange callback
   //so event.target.value isnt required
@@ -34,7 +33,6 @@ const TimeSelector: React.FC<TimeSelectorInterface> = ({values, onValueChange}) 
           className="bg-white font-bold"
           color="purple"
           label="Select time frame" 
-          // controlled component: value prop it tied to the time state
           value={time}
           name={time}
           onChange={handleChange}

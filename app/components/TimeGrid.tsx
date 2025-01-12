@@ -15,7 +15,6 @@ const TimeGrid = () => {
   const checkBoxSize = isSmallScreen ? 'small' :'medium';
   const labelFontSize = isSmallScreen ? '0.75rem':'1.25rem';
 
-
   const timeOptions = [
     ['20', '20 minutes'],
     ['30', '30 minutes'],
@@ -27,15 +26,16 @@ const TimeGrid = () => {
   //update state in parent component
   const [handleDietaries, setHandleDietaries] = useState<string[]>([]);
   const [handleTime, setHandleTime] = useState("");
-  const [matchedRecipes, setMatchedRecipes] = useState<number[]>([]);
+  const [matchedRecipeIds, setMatchedRecipeIds] = useState<number[]>([]);
 
   const handleDietarySelection = (selectedItems: string[]) => {
     setHandleDietaries(selectedItems);
   }
 
   const handleRecipeIds = (suitableRecipeIds: number[]) => {
-    setMatchedRecipes(suitableRecipeIds);
+    setMatchedRecipeIds(suitableRecipeIds);
   }
+  
 
   return (
     <>
