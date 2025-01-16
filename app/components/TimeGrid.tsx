@@ -26,17 +26,12 @@ const TimeGrid = () => {
   //update state in parent component
   const [handleDietaries, setHandleDietaries] = useState<string[]>([]);
   const [handleTime, setHandleTime] = useState("");
-  const [matchedRecipeIds, setMatchedRecipeIds] = useState<number[]>([]);
 
   const handleDietarySelection = (selectedItems: string[]) => {
     setHandleDietaries(selectedItems);
   }
 
-  const handleRecipeIds = (suitableRecipeIds: number[]) => {
-    setMatchedRecipeIds(suitableRecipeIds);
-  }
   
-
   return (
     <>
     <Box className="flex flex-col justify-center gap-x-4 sm:mb-7 md:mt-6 bg-gray-100">
@@ -54,7 +49,6 @@ const TimeGrid = () => {
 
         <FindRecipeButton 
           values={'Find Me Recipes'}
-          onClickCallBack={handleRecipeIds}
           data={[handleDietaries, handleTime]}
         />
       </Box>

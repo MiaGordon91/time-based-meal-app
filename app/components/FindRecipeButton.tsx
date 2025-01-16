@@ -1,16 +1,41 @@
+'use client'
+
 import { Box } from "@mui/material";
 import { Button } from "../MTailwind"
 import useRecipeSuitabilityHook from '../hooks/useRecipeSuitabilityHook';
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect } from "react";
 
 interface FindButtonRecipeButtonProps {
   values: string, 
   data: [string[], string],
-  onClickCallBack: (suitableRecipeIds: number[]) => void, 
 }
 
-const FindRecipeButton: React.FC<FindButtonRecipeButtonProps> = ({values, onClickCallBack, data}) => {
+const FindRecipeButton: React.FC<FindButtonRecipeButtonProps> = ({values, data}) => {
+  
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
-    const {handleClick} = useRecipeSuitabilityHook(onClickCallBack, data)
+  const {handleClick, suitableRecipeIds} = useRecipeSuitabilityHook(data);
+
+  useEffect(() => {
+    if(suitableRecipeIds.length > 0) {
+      router.push(`/recipes?${createQueryString('id', suitableRecipeIds.join(','))}`
+      )
+      } else {
+        router.push('/homepage')
+      }
+  }, []);
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString())
+      params.set(name, value)
+    
+      return params.toString();
+    },
+    [searchParams]
+   )
 
   return (
     <Box className='flex justify-center my-5'>

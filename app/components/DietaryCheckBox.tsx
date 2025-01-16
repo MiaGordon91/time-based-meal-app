@@ -1,6 +1,5 @@
 import { Box, FormControl, FormControlLabel, Checkbox, Typography, FormGroup, capitalize } from '@mui/material'
 import { pink } from '@mui/material/colors'
-import { useState } from 'react';
 import useDietarySelectionHook from '../hooks/useDietarySelectionHook';
 
 interface DietaryCheckBoxProps {

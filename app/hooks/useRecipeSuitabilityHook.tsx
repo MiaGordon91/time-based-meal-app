@@ -1,18 +1,18 @@
+import { useState } from "react";
 import placeholderRecipes from "../lib/placeholderRecipes.json"
 
-const useRecipeSuitabilityHook = (
-    onClickCallBack: (suitableRecipeIds: number[]) => void, 
-    data: [string[], string]) => {
+const useRecipeSuitabilityHook = (data: [string[], string]) => {
 
     const [dietaries, time] = data;
+    const [suitableRecipeIds, setSuitableRecipeIds] = useState<number[]>([])
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleClick = () => {
 
         if(dietaries && time){ 
 
             const suitableRecipeIds: number[] = [];
 
-            //convert object into array for iteration
+            //convert object into array to iterate over
             const dietariesArray = Object.values(dietaries);
 
             placeholderRecipes.forEach((recipe) => {
@@ -24,15 +24,13 @@ const useRecipeSuitabilityHook = (
                 suitableRecipeIds.push(recipe["id"]);   
             }
         })  
-            
-        onClickCallBack(suitableRecipeIds);
 
-        return suitableRecipeIds;
+        setSuitableRecipeIds(suitableRecipeIds);
         
       }
     }
 
-    return {handleClick};
+    return {handleClick, suitableRecipeIds};
 }
 
 export default useRecipeSuitabilityHook;
