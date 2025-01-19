@@ -15,7 +15,7 @@ const useRecipeSuitabilityHook = (data: [string[], string]) => {
             //convert object into array to iterate over
             const dietariesArray = Object.values(dietaries);
 
-            placeholderRecipes.forEach((recipe) => {
+            placeholderRecipes.recipes.forEach((recipe) => {
 
             const recipeDietary = recipe["dietary"];    
 

@@ -18,15 +18,6 @@ const FindRecipeButton: React.FC<FindButtonRecipeButtonProps> = ({values, data})
 
   const {handleClick, suitableRecipeIds} = useRecipeSuitabilityHook(data);
 
-  useEffect(() => {
-    if(suitableRecipeIds.length > 0) {
-      router.push(`/recipes?${createQueryString('id', suitableRecipeIds.join(','))}`
-      )
-      } else {
-        router.push('/homepage')
-      }
-  }, []);
-
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString())
@@ -36,6 +27,15 @@ const FindRecipeButton: React.FC<FindButtonRecipeButtonProps> = ({values, data})
     },
     [searchParams]
    )
+
+  useEffect(() => {
+    if(suitableRecipeIds.length > 0) {
+      router.push(`/recipes?${createQueryString('id', suitableRecipeIds.join(','))}`
+      )
+      } else {
+        router.push('/homepage')
+      }
+  }, [suitableRecipeIds]);
 
   return (
     <Box className='flex justify-center my-5'>

@@ -1,7 +1,12 @@
 import Grid from '@mui/material/Grid2'
 import RecipeCardSummary from './RecipeCardSummary'
 
-const TopRecipeGrid = () => {
+
+interface TopRecipeGridProps {
+  data: number[]
+}
+
+const TopRecipeGrid: React.FC<TopRecipeGridProps> = ({data}) => {
   return (
     <>
     <Grid 
@@ -15,18 +20,14 @@ const TopRecipeGrid = () => {
           <Grid size={{xs: 12}} >
             <p className="text-base md:text-xl w-full text-center mb-4">Here are our most popular recipes - tried, tested and utterly delicious!</p>
           </Grid>
-          <Grid size={{ xs:6, md: 3}}>
-            <RecipeCardSummary />
-          </Grid>
-          <Grid size={{ xs:6, md: 3}}>
-            <RecipeCardSummary />
-          </Grid>
-          <Grid size={{ xs:6, md: 3}}>
-            <RecipeCardSummary />
-          </Grid>
-          <Grid size={{ xs:6, md: 3}}>
-            <RecipeCardSummary />
-          </Grid>
+
+          {data.map((x) => (
+            <Grid size={{ xs:6, md: 3}}>
+              <RecipeCardSummary value={x}/>
+            </Grid>
+          ))}
+          
+          
     </Grid>
     </>
   )
