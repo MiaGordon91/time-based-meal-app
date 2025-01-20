@@ -11,10 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
    
 
-  const pages = ["Home", "Find Recipes", "My Account"];
-
-
-  const navBar = () => {
+  const NavBar = () => {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     
@@ -27,9 +24,13 @@ import Menu from '@mui/material/Menu';
 
     }
 
+    const pages = {'Home': '/homepage', 'Find Recipes': '/', 'My Account': '/'};
+  
+
     return (
       <>
       <Box sx={{ flexGrow: 1 }}>
+
       <AppBar className="py-2 sm:py-4 bg-inherit" position="static">
         <Toolbar>
           <RestaurantIcon className="text-black" sx={{ fontSize: {xs:30, lg:40}}}/>
@@ -56,44 +57,44 @@ import Menu from '@mui/material/Menu';
                 color="default"
               >
                 <MenuIcon sx={{ display: {xs:"flex", sm: "none"} }}/>
-              </IconButton>
+            </IconButton>
 
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'center',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'center',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{ display: { xs: 'block', md: 'none' } }}
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'center',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'center',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{ display: { xs: 'block', md: 'none' } }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography sx={{ textAlign: 'center'}}>{page}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
+              {Object.keys(pages).map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography sx={{ textAlign: 'center'}}>{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
         
           <Box className="gap-4" sx={{ flexGrow: 0, display: { xs: 'none', sm: 'flex' } }}>
-             {pages.map((page) => (
-              <IconButton className="text-black" size="small">{page}</IconButton>
-              ))} 
+            {Object.entries(pages).map(([page, route]) => (
+              <IconButton className="text-black" key={page} href={route} size="small">{page}</IconButton>
+            ))} 
           </Box> 
     
         </Toolbar>
-    </AppBar>     
+      </AppBar>  
     </Box>  
     </>
     );
   }
 
-  export default navBar;
+  export default NavBar;
   
