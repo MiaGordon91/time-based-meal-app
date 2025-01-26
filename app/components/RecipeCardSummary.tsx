@@ -2,19 +2,16 @@
 
 import { Card } from '@material-tailwind/react'
 import { ExpandMore } from '@mui/icons-material'
-import Box from '@mui/material/Box'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
-import Collapse from '@mui/material/Collapse'
-import Typography from '@mui/material/Typography'
+import { Box, CardActions, CardContent, CardMedia, Collapse, Typography, Link } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import React from 'react'
 import placeholderRecipes from "../lib/placeholderRecipes.json"
 
 
 interface RecipeCardSummaryProp {
-  value: number
+  value: number | null,
+  data: {id: number, name: string, image_url: string, dietary: string[], time: string, recipe: string} | null;
+  
 }
 
 const RecipeCardSummary: React.FC<RecipeCardSummaryProp> = (value) => {
@@ -35,17 +32,18 @@ const RecipeCardSummary: React.FC<RecipeCardSummaryProp> = (value) => {
      <CardMedia
          className="rounded-lg"
          component="img"
-         height="auto"
          image='/images/pasta.jpg'
          alt="Paella dish" />
          
          <Box className="shadow-2xl divide-y divide-solid">
 
-           <CardContent className="pb-0">
-             <Typography className="text-xs md:text-base lg:text-lg font-bold pb-2">
-               {recipe.name}
-             </Typography>
-           </CardContent>
+          <Link href={`/recipes/recipe/${recipe.id}`}>
+            <CardContent className="pb-0">
+              <Typography className="text-xs md:text-base lg:text-lg font-bold pb-2">
+                {recipe.name}
+              </Typography>
+            </CardContent>
+           </Link>
            
            <CardContent sx={{ display: { xs: 'none', sm: 'block' } }}>
            <Typography sx={{ marginBottom: 2 }}>

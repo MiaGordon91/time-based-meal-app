@@ -46,7 +46,7 @@ const useDietarySelectionHook = (onSelectionChange: (suitableRecipeIds: string[]
       // of mutating existing one - setting checked properly allows dynamic behaviour 
       const selectedItems = Object.keys(dietaries).filter(
         (key) => key === value ? checked : dietaries[key as keyof typeof dietaries]); // required to tell TS that the key also exists in the dietaries object
-    
+  
         //send updated items to callback as an array
         onSelectionChange(selectedItems);
 
@@ -57,6 +57,7 @@ const useDietarySelectionHook = (onSelectionChange: (suitableRecipeIds: string[]
       // receive dietary as parameter and conditionally check what has been selected 
       // to trigger disabled functionality
       const isCheckboxDisabled = (dietary: string) => {
+        // checks if any value of dietary object is true, except 'none' at index 4
         return dietary === 'none' ? Object.values(dietaries).some((val, i) => i !== 4 && val) 
         : dietaries.none
       }

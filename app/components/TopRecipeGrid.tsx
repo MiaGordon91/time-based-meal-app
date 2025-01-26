@@ -11,7 +11,7 @@ const TopRecipeGrid: React.FC<TopRecipeGridProps> = ({data}) => {
     <>
     <Grid 
         container 
-        className="px-7 mx-5 md:mx-9 pt-10"
+        className="px-7 mx-5 md:mx-9 pt-2"
         spacing={{ xs: 2 }}
         >
           <Grid size={{xs: 12}}>
@@ -23,7 +23,7 @@ const TopRecipeGrid: React.FC<TopRecipeGridProps> = ({data}) => {
 
           {data.map((x) => (
             <Grid size={{ xs:6, md: 3}}>
-              <RecipeCardSummary value={x}/>
+                <RecipeCardSummary data={null} value={x}/>
             </Grid>
           ))}
           

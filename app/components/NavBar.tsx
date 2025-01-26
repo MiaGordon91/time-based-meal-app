@@ -24,7 +24,7 @@ import Menu from '@mui/material/Menu';
 
     }
 
-    const pages = {'Home': '/homepage', 'Find Recipes': '/', 'My Account': '/'};
+    const pages = {'Home': '/', 'Find Recipes': '/', 'My Account': '/'};
   
 
     return (

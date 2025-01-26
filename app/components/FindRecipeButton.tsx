@@ -33,7 +33,7 @@ const FindRecipeButton: React.FC<FindButtonRecipeButtonProps> = ({values, data})
       router.push(`/recipes?${createQueryString('id', suitableRecipeIds.join(','))}`
       )
       } else {
-        router.push('/homepage')
+        router.push('/')
       }
   }, [suitableRecipeIds]);
 

@@ -26,21 +26,21 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({data}) => {
     
 
   return (
-    <Grid
-      container 
-      className="md:px-7 mx-5 md:mx-9 pt-10"
-      spacing={{ xs: 2 }}
-      >
-        <Grid className='p-2 md:p-5 bg-gray-100 rounded-lg' size={{xs: 12}}>
-          <Header />
-        </Grid>
-         {data?.map((x) => (
-          <Grid size={{xs: 6, md: mdSize}}>
-            <RecipeCardSummary value={parseInt(x)}/>
-          </Grid> 
-         ))}
-          
-     </Grid>
+      <Grid
+        container 
+        className="md:px-7 mx-5 md:mx-9 pt-10"
+        justifyContent="center"
+        >
+          <Grid className='p-2 md:p-5 bg-gray-100 rounded-lg' size={{xs: 12}}>
+            <Header />
+          </Grid>
+          {data?.map((x) => (
+            <Grid size={{xs: 6, md: mdSize}} sx={{ maxWidth: '600px', padding: '20px' }} >
+              <RecipeCardSummary data={null} key={parseInt(x)} value={parseInt(x)}/>
+            </Grid> 
+          ))}
+      </Grid>
+     
   )
 
   function Header() {
