@@ -5,10 +5,11 @@ const useRecipeSuitabilityHook = (data: [string[], string]) => {
 
     const [dietaries, time] = data;
     const [suitableRecipeIds, setSuitableRecipeIds] = useState<number[]>([])
+    const [errorMessage, setErrorMessage] = useState<string| null >(null);
 
     const handleClick = () => {
 
-        if(dietaries && time){ 
+        if(time && dietaries.length > 0){ 
 
             const suitableRecipeIds: number[] = [];
 
@@ -26,11 +27,14 @@ const useRecipeSuitabilityHook = (data: [string[], string]) => {
         })  
 
         setSuitableRecipeIds(suitableRecipeIds);
+        setErrorMessage(null);
         
+      } else {
+        setErrorMessage('Please select your dietary and time requirements');
       }
     }
 
-    return {handleClick, suitableRecipeIds};
+    return {handleClick, suitableRecipeIds, errorMessage};
 }
 
 export default useRecipeSuitabilityHook;
