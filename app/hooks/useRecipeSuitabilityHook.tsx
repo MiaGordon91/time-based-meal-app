@@ -34,7 +34,7 @@ const useRecipeSuitabilityHook = (data: [string[], string]) => {
       }
     }
 
-    return {handleClick, suitableRecipeIds, errorMessage};
+    return {handleClick, suitableRecipeIds, errorMessage, dietaries, time};
 }
 
 export default useRecipeSuitabilityHook;

@@ -1,5 +1,4 @@
-
-@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Caveat&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

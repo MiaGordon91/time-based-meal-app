@@ -1,16 +1,19 @@
 import React from 'react'
 import RecipeCardSummary from './RecipeCardSummary'
 import Grid from '@mui/material/Grid2'
+import { Typography } from '../MTailwind'
 
 interface RecipeCarouselProps {
-  data: string[] | null
+  recipeIds: string[] | null
+  dietaryParams: string | null
+  timeParams: string | null
 }
 
-const RecipeCarousel: React.FC<RecipeCarouselProps> = ({data}) => {
+const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds, dietaryParams, timeParams}) => {
  
   let mdSize = 0
 
-  switch(data.length) {
+  switch(recipeIds.length) {
     case 4: 
       mdSize = 3;
       break;
@@ -24,6 +27,7 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({data}) => {
       mdSize = 12;
   }
     
+  const supportingText = 'A selection of carefully selected meal ideas suited to your dietaries and time preferences'
 
   return (
       <Grid
@@ -34,8 +38,12 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({data}) => {
           <Grid className='p-2 md:p-5 bg-gray-100 rounded-lg' size={{xs: 12}}>
             <Header />
           </Grid>
-          {data?.map((x) => (
-            <Grid size={{xs: 6, md: mdSize}} sx={{ maxWidth: '600px', padding: '20px' }} >
+          <Grid className='p-3 md:p- rounded-lg' size={{xs: 12}}>
+            <Typography className="text-base md:text-2xl w-full text-center">{supportingText}</Typography>
+          </Grid> 
+
+          {recipeIds?.map((x) => (
+            <Grid key={parseInt(x)} size={{xs: 6, md: mdSize}} sx={{ maxWidth: '600px', padding: '20px' }} >
               <RecipeCardSummary data={null} key={parseInt(x)} value={parseInt(x)}/>
             </Grid> 
           ))}
@@ -45,11 +53,10 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({data}) => {
 
   function Header() {
     const text = 'Recipes for you';
-    const supportingText = 'A selection of carefully selected meal ideas suited to your dietaries and time preferences'
 
     return [
-      <h1 className="font-bold text-base md:text-3xl w-full text-center pb-3">{text}</h1>,
-      <h3 className="text-xs md:text-xl w-full text-center">{supportingText}</h3>
+      <h1 className="font-bold md:text-4xl w-full text-center pb-4">{text}</h1>,
+      <h2 className="text-base md:text-3xl w-full text-center pb-2">Dietary: {dietaryParams.replace(/^./, dietaryParams[0].toUpperCase())} | Cook Time: {timeParams} minutes</h2>,
     ]
     
   }

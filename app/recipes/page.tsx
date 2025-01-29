@@ -6,15 +6,20 @@ import { useSearchParams } from "next/navigation";
 
 const Page = () => {
 
-  // retreive id's from query string or hard code
+  // retreive query params from query string
   const searchParams = useSearchParams();
+
   const params = searchParams.get('id');
   const queryParams = params ? params.split(",") : null;
-  
+
+  const dietaryParams = searchParams.get('dietary');
+  const timeParams = searchParams.get('time');
+
+  console.log(dietaryParams)
   return (
     <>
     <NavBar />
-    <RecipeCarousel data={queryParams}/>
+    <RecipeCarousel recipeIds={queryParams} dietaryParams={dietaryParams} timeParams={timeParams}/>
     <Footer />
     </>
   )

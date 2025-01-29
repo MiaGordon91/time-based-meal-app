@@ -16,27 +16,36 @@ interface FindButtonRecipeButtonProps {
 const FindRecipeButton: React.FC<FindButtonRecipeButtonProps> = ({values, data}) => {
   
   const router = useRouter()
-  const searchParams = useSearchParams()
 
-  const {handleClick, suitableRecipeIds, errorMessage} = useRecipeSuitabilityHook(data);
 
+  const {handleClick, suitableRecipeIds, errorMessage, dietaries, time} = useRecipeSuitabilityHook(data);
+
+  //function takes an object of query parameters and sets k:v pairs to URLSearchParams
   const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString())
-      params.set(name, value)
+    (params: { [key: string]: string }) => {
+      const searchParams = new URLSearchParams()
+     
+      Object.entries(params).forEach(([key, value]) => {
+        searchParams.set(key, value);
+      })
     
-      return params.toString();
+      return searchParams.toString();
     },
-    [searchParams]
+    []
    )
 
   useEffect(() => {
     if(suitableRecipeIds.length > 0) {
-      router.push(`/recipes?${createQueryString('id', suitableRecipeIds.join(','))}`
-      )
-      } else {
-        router.push('/')
-      }
+      router.push(
+        `/recipes?${createQueryString({
+          'id': suitableRecipeIds.join(','),
+          'dietary': dietaries.toString(),
+          'time': time.toString()
+        })}`
+      );
+    } else {
+      router.push('/')
+    }
   }, [suitableRecipeIds]);
 
   return (

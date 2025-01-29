@@ -1,18 +1,19 @@
 'use client';
 
 import "./globals.css";
-import { Bodoni_Moda } from "next/font/google";
+import { Roboto_Flex } from "next/font/google";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from '@mui/material/styles';
 
-const bodoni_moda = Bodoni_Moda({
+const roboto_flex = Roboto_Flex({
   subsets: ['latin'],
-  variable: "--font-bodoni_moda",
+  variable: '--font-roboto_flex',
+  display: 'swap'
 })
 
 const theme = createTheme({
   typography: {
-    fontFamily: bodoni_moda.style.fontFamily,
+    fontFamily: roboto_flex.style.fontFamily,
   },
 })
 
@@ -25,7 +26,7 @@ export default function RootLayout({
     <>
     <html lang="en">
       <ThemeProvider theme={theme}>
-        <body className={`${bodoni_moda.variable} font-sans`}>      
+        <body className={`${roboto_flex.variable} font-sans`}>      
           {children}
         </body>
       </ThemeProvider>
