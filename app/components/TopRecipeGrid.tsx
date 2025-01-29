@@ -15,7 +15,7 @@ const TopRecipeGrid: React.FC<TopRecipeGridProps> = ({data}) => {
         spacing={{ xs: 2 }}
         >
           <Grid size={{xs: 12}}>
-            <h1 className="font-extrabold text-lg md:text-3xl w-full text-center">See what everyone's raving about this month</h1>
+            <h1 className="font-extrabold text-lg md:text-3xl w-full text-center">See what everyone&apos;s raving about this month</h1>
           </Grid>
           <Grid size={{xs: 12}} >
             <p className="text-base md:text-xl w-full text-center mb-4">Here are our most popular recipes - tried, tested and utterly delicious!</p>
@@ -23,7 +23,7 @@ const TopRecipeGrid: React.FC<TopRecipeGridProps> = ({data}) => {
 
           {data.map((x) => (
             <Grid size={{ xs:6, md: 3}}>
-                <RecipeCardSummary data={null} value={x}/>
+                <RecipeCardSummary key={x} data={null} value={x}/>
             </Grid>
           ))}
           

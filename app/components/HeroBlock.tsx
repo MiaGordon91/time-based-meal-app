@@ -1,4 +1,3 @@
-import { Carousel } from "@material-tailwind/react"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 
@@ -23,7 +22,7 @@ const HeroBlock = () => {
                         color="white"
                         className="xs:hidden md:pt-4 text-base md:text-xl lg:text-2xl"
                         >
-                        We're here to take the pain out of deciding what to cook
+                        We&apos;re here to take the pain out of deciding what to cook
                     </Typography>
                 </div>
             </div>

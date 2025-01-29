@@ -14,17 +14,12 @@ const Page = ({params}: {
 
   //Need to update once connected to a database 
   const recipeId = parseInt(params.recipeId)
-  const selectedRecipe = placeholderRecipes.recipes.find(recipe => recipe.id == recipeId)
+  let selectedRecipe = placeholderRecipes.recipes.find(recipe => recipe.id == recipeId)
 
-  // console.log(selectedRecipe);
-
-  //Test array - ingredients will be stored in a dedicated database table
-  selectedRecipe.ingredients = ['200g tomatoes', '1 tbsp olive oil', '2 red onions', '2 red peppers', '3 garlic cloves', '300g brown rice', '200g tomatoes', '1 tbsp olive oil', '2 red onions', '2 red peppers', '3 garlic cloves', '300g brown rice']
-  
   return (
     <>
     <NavBar />
-    <RecipeList children={selectedRecipe}/>
+    <RecipeList recipeObject={selectedRecipe}/>
     <Footer />
     </>
   )

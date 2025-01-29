@@ -37,7 +37,7 @@ const RecipeCardSummary: React.FC<RecipeCardSummaryProp> = (value) => {
          
          <Box className="shadow-2xl divide-y divide-solid">
 
-          <Link href={`/recipes/recipe/${recipe.id}`}>
+          <Link href={`/recipes/recipe/${recipe.id}`} sx={{color: 'inherit'}}>
             <CardContent className="pb-0">
               <Typography className="text-xs md:text-base lg:text-lg font-bold pb-2">
                 {recipe.name}
@@ -47,7 +47,7 @@ const RecipeCardSummary: React.FC<RecipeCardSummaryProp> = (value) => {
            
            <CardContent sx={{ display: { xs: 'none', sm: 'block' } }}>
            <Typography sx={{ marginBottom: 2 }}>
-               Cooking Time: {recipe.time}
+               Cooking Time: {recipe.time} minutes
              </Typography>
              <Typography variant="body2">
                This impressive paella is a perfect party dish and a fun meal to cook
@@ -72,7 +72,7 @@ const RecipeCardSummary: React.FC<RecipeCardSummaryProp> = (value) => {
            <CardContent>
              <Typography sx={{ marginBottom: 2 }}>Method:</Typography>
              <Typography sx={{ marginBottom: 2 }}>
-              {recipe.recipe}
+              {recipe.method}
              </Typography>
            </CardContent>
          </Collapse>

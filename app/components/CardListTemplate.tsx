@@ -1,22 +1,21 @@
-import { CardHeader } from '@material-tailwind/react';
 import { Card, CardContent, Divider, List, ListItem, Typography } from '@mui/material'
 import React from 'react'
 
 interface CardListTemplateProps {
-    children: any;
+    recipeObject: string[];
 }
 
-const CardListTemplate: React.FC<CardListTemplateProps> = ({children}) => {
+const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
  
 // ACTION => move into a hook 
-  var list; 
-  var header;
-  var maxWidth;
+  let list; 
+  let header;
+  let maxWidth;
 
-  if(Array.isArray(children)){
+  if(Array.isArray(recipeObject)){
    list =  
    <List>
-        {children.map((item) => (
+        {recipeObject.map((item) => (
         <>
         <Divider />
             <ListItem>
@@ -32,7 +31,7 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({children}) => {
   else {
     list = <List>
             <Divider />
-            {children}
+            {recipeObject}
             </List>
     header = 'Method'
     maxWidth = "700px"

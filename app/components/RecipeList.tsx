@@ -4,13 +4,13 @@ import React from 'react'
 import CardListTemplate from './CardListTemplate';
 
 interface RecipeListProps {
-    children: {id: number, name: string, image_url: string, dietary: string[], time: string, recipe: string, ingredients: string[]};
+    recipeObject: {id: number, name: string, image_url: string, dietary: string[], time: string, method: string, ingredients: string[]} | undefined;
 }
 
-const RecipeList: React.FC<RecipeListProps> = ({children}) => {
+ const RecipeList: React.FC<RecipeListProps> = ({recipeObject}) => {
 
-const ingredients = children.ingredients;
-const method = children.recipe;
+ const ingredients = recipeObject ? recipeObject.ingredients : null;
+ const method = recipeObject ? [recipeObject.method] : null;
   
   return (
     <>
@@ -37,12 +37,12 @@ const method = children.recipe;
             <Typography 
                 className="font-bold text-base md:text-3xl pb-7" 
                 align="left">
-                {children.name}
+                {recipeObject.name}
             </Typography>
             <Typography 
                 className="text-xs md:text-xl font-bold pb-5" 
                 align="left">
-                Cooking Time: {children.time} minutes
+                Cooking Time: {recipeObject.time} minutes
             </Typography>
             <Typography 
                 className="text-xs md:text-xl" 
@@ -59,8 +59,8 @@ const method = children.recipe;
         justifyContent="center"
         sx={{ padding: '20px' }} 
         >
-        <CardListTemplate children={ingredients}/>
-        <CardListTemplate children={method}/>
+        <CardListTemplate recipeObject={ingredients}/>
+        <CardListTemplate recipeObject={method}/>
     </Grid>
     </>
   )

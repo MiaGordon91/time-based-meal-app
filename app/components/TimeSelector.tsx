@@ -5,18 +5,18 @@ import { useState } from 'react';
 
 interface TimeSelectorInterface {
   values:string[][], 
-  onValueChange: (setHandleTime: string) => void
+  onValueChange: (setHandleTime: string | undefined) => void
 }
 
 const TimeSelector: React.FC<TimeSelectorInterface> = ({values, onValueChange}) => {
 
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState<string | undefined>("");
 
   //update the state and notify the parent component by invoking the onValueChange callback 
 
   //MTailWind Select provides the selected value straight to the OnChange callback
   //so event.target.value isnt required
-  const handleChange = (selectedTime: any) => {
+  const handleChange = (selectedTime: string | undefined) => {
 
     setTime(selectedTime);
 
@@ -38,7 +38,7 @@ const TimeSelector: React.FC<TimeSelectorInterface> = ({values, onValueChange}) 
           onChange={handleChange}
           >
           {values.map(([value, text]) => (
-            <Option value={value}>
+            <Option key={value} value={value}>
               {text}
             </Option>
           ))}
