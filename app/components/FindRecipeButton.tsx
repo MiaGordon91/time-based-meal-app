@@ -3,7 +3,7 @@
 import { Box } from "@mui/material";
 import { Button } from "../MTailwind"
 import useRecipeSuitabilityHook from '../hooks/useRecipeSuitabilityHook';
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import Alert from '@mui/material/Alert';
 
@@ -16,7 +16,6 @@ interface FindButtonRecipeButtonProps {
 const FindRecipeButton: React.FC<FindButtonRecipeButtonProps> = ({values, data}) => {
   
   const router = useRouter()
-
 
   const {handleClick, suitableRecipeIds, errorMessage, dietaries, time} = useRecipeSuitabilityHook(data);
 

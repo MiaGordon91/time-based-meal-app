@@ -22,7 +22,7 @@ const TopRecipeGrid: React.FC<TopRecipeGridProps> = ({data}) => {
           </Grid>
 
           {data.map((x) => (
-            <Grid size={{ xs:6, md: 3}}>
+            <Grid size={{ xs:6, md: 3}} key={x}>
                 <RecipeCardSummary key={x} data={null} value={x}/>
             </Grid>
           ))}

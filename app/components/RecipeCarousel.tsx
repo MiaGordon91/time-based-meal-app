@@ -43,8 +43,8 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds, dietaryParams
           </Grid> 
 
           {recipeIds?.map((x) => (
-            <Grid key={parseInt(x)} size={{xs: 6, md: mdSize}} sx={{ maxWidth: '600px', padding: '20px' }} >
-              <RecipeCardSummary data={null} key={parseInt(x)} value={parseInt(x)}/>
+            <Grid key={x} size={{xs: 6, md: mdSize}} sx={{ maxWidth: '600px', padding: '20px' }}>
+              <RecipeCardSummary key={x} data={null} value={parseInt(x)}/>
             </Grid> 
           ))}
       </Grid>

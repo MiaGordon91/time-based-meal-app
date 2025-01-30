@@ -11,10 +11,9 @@ const Page = ({params}: {
 }) => {
 
   //params props are passed to page - the dynamic segment will be the recipe name
-
   //Need to update once connected to a database 
   const recipeId = parseInt(params.recipeId)
-  let selectedRecipe = placeholderRecipes.recipes.find(recipe => recipe.id == recipeId)
+  const selectedRecipe = placeholderRecipes.recipes.find(recipe => recipe.id == recipeId)
 
   return (
     <>
