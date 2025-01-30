@@ -10,12 +10,11 @@ const Page = () => {
   const searchParams = useSearchParams();
 
   const params = searchParams.get('id');
-  const queryParams = params ? params.split(",") : null;
+  const queryParams = params ? params.split(",") : [];
 
-  const dietaryParams = searchParams.get('dietary');
-  const timeParams = searchParams.get('time');
+  const dietaryParams = searchParams.get('dietary') || "none";
+  const timeParams = searchParams.get('time') || "none";
 
-  console.log(dietaryParams)
   return (
     <>
     <NavBar />
