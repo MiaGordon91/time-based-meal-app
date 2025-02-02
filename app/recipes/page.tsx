@@ -6,6 +6,11 @@ import NavBar from '../components/NavBar'
 import RecipeCarousel from '../components/RecipeCarousel'
 import { useSearchParams } from "next/navigation";
 
+//temp fix to resolve missing-suspense-with-csr-bailout in prod build
+function RecipeCarouselFallback() {
+    return <>test</>
+}
+
 const Page = () => {
 
   // retreive query params from query string
@@ -21,10 +26,10 @@ const Page = () => {
     <>
     <NavBar />
 
-    <Suspense>
+    <Suspense fallback={<RecipeCarouselFallback />}>
       <RecipeCarousel recipeIds={queryParams} dietaryParams={dietaryParams} timeParams={timeParams}/>
     </Suspense>
-    
+
     <Footer />
   </>
   )
