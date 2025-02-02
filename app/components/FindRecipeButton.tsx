@@ -45,7 +45,7 @@ const FindRecipeButton: React.FC<FindButtonRecipeButtonProps> = ({values, data})
     } else {
       router.push('/')
     }
-  }, [suitableRecipeIds]);
+  }, [createQueryString, dietaries, router, suitableRecipeIds, time]);
 
   return (
     <Box className='relative flex justify-center items-center my-5'>

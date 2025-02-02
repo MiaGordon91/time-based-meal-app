@@ -34,8 +34,8 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds = [], dietaryP
 
     return(
     <>
-      <h1 className="font-bold md:text-4xl w-full text-center pb-4">{text}</h1>,
-      <h2 className="text-base md:text-3xl w-full text-center pb-2">Dietary: {dietaryParams?.replace(/^./, dietaryParams[0].toUpperCase())} | Cooking Time: {timeParams} minutes</h2>,
+      <h1 className="font-bold md:text-4xl w-full text-center pb-4">{text}</h1>
+      <h2 className="text-base md:text-3xl w-full text-center pb-2">Dietary: {dietaryParams?.replace(/^./, dietaryParams[0].toUpperCase())} | Cooking Time: {timeParams} minutes</h2>
     </>
     )
   }

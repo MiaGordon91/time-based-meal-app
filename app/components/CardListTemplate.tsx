@@ -2,7 +2,7 @@ import { Card, CardContent, Divider, List, ListItem, Typography } from '@mui/mat
 import React from 'react'
 
 interface CardListTemplateProps {
-    recipeObject: string[];
+    recipeObject: string[] | undefined;
 }
 
 const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
@@ -10,7 +10,6 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
 // ACTION => move into a hook 
   let list; 
   let header;
-  let maxWidth;
 
   if(Array.isArray(recipeObject)){
    list =  
@@ -26,7 +25,6 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
         ))}
     </List> 
     header = 'Ingredients'
-    maxWidth = "400px"
   } 
   else {
     list = <List>
@@ -34,7 +32,6 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
             {recipeObject}
             </List>
     header = 'Method'
-    maxWidth = "700px"
   }
  
   return (
@@ -42,7 +39,7 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
     <Card
         className="px-10"
         sx={{ 
-        maxWidth: maxWidth, 
+        maxWidth: "700px", 
         minHeight: '600px'
     }}
     >

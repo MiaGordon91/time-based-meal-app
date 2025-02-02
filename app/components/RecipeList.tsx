@@ -4,24 +4,23 @@ import React from 'react'
 import CardListTemplate from './CardListTemplate';
 
 interface RecipeListProps {
-    recipeObject: {id: number, name: string, image_url: string, dietary: string[], time: string, method: string, ingredients: string[]} | undefined;
+    recipeObject: {id: number, name: string, image_url: string, dietary: string[], time: string, method: string, ingredients: string[] | undefined };
 }
 
  const RecipeList: React.FC<RecipeListProps> = ({recipeObject}) => {
 
- const ingredients = recipeObject ? recipeObject.ingredients : null;
- const method = recipeObject ? [recipeObject.method] : null;
+ const ingredients = recipeObject ? recipeObject.ingredients : undefined;
+ const method = recipeObject ? [recipeObject.method] : undefined;
   
   return (
     <>
     <Grid 
     container 
-    spacing={2}
-    xs={12} 
+    spacing={2} 
     className='p-2 md:p-5 md:px-7 bg-gray-100 rounded-lg'
     justifyContent="center"
     >   
-        <Grid item xs={12} sm={6} sx={{ maxWidth: '400px', padding: '20px' }}>
+        <Grid sx={{ maxWidth: '400px', padding: '20px' }}>
             <Card sx={{ boxShadow: 'none', maxWidth: '400px', margin: '0 auto' }}> 
                 <CardMedia
                     className="rounded-lg"
@@ -33,7 +32,7 @@ interface RecipeListProps {
             </Card>
         </Grid>
 
-        <Grid item xs={12} sm={6} sx={{ maxWidth: '400px', padding: '20px' }}>
+        <Grid sx={{ maxWidth: '400px', padding: '20px' }}>
             <Typography 
                 className="font-bold text-base md:text-3xl pb-7" 
                 align="left">
@@ -55,7 +54,6 @@ interface RecipeListProps {
     <Grid 
         container 
         spacing={2}
-        xs={12} 
         justifyContent="center"
         sx={{ padding: '20px' }} 
         >

@@ -4,7 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { Box, Toolbar } from "@mui/material";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import MenuItem from '@mui/material/MenuItem';
@@ -13,9 +13,9 @@ import Menu from '@mui/material/Menu';
 
   const NavBar = () => {
 
-    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     
-    const handleOpenNavMenu = (event: { currentTarget: SetStateAction<null>; }) => {
+    const handleOpenNavMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
       setAnchorElNav(event.currentTarget);
     }
 

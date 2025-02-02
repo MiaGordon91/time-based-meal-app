@@ -4,7 +4,7 @@ import { Select, Option } from '../MTailwind';
 import { useState } from 'react';
 
 interface TimeSelectorInterface {
-  values:string[][], 
+  values: string[][], 
   onValueChange: (setHandleTime: string | undefined) => void
 }
 
