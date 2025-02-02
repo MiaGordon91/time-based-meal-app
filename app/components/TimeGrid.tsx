@@ -25,7 +25,7 @@ const TimeGrid = () => {
 
   //update state in parent component
   const [handleDietaries, setHandleDietaries] = useState<string[]>([]);
-  const [handleTime, setHandleTime] = useState("");
+  const [handleTime, setHandleTime] = useState<string | undefined >("");
 
   const handleDietarySelection = (selectedItems: string[]) => {
     setHandleDietaries(selectedItems);
@@ -49,7 +49,7 @@ const TimeGrid = () => {
 
         <FindRecipeButton 
           values={'Find Me Recipes'}
-          data={[handleDietaries, handleTime]}
+          data={[handleDietaries, handleTime!]}
         />
       </Box>
 

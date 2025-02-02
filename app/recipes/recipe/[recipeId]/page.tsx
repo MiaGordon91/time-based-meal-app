@@ -18,7 +18,7 @@ const Page = ({params}: {
   return (
     <>
     <NavBar />
-    <RecipeList recipeObject={selectedRecipe}/>
+    <RecipeList recipeObject={selectedRecipe!}/>
     <Footer />
     </>
   )

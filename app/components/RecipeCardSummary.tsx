@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import { Card } from '@material-tailwind/react'
 import { ExpandMore } from '@mui/icons-material'
 import { Box, CardActions, CardContent, CardMedia, Collapse, Typography, Link } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import React from 'react'
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
+import React from "react"
 import placeholderRecipes from "../lib/placeholderRecipes.json"
 
 
@@ -59,7 +59,6 @@ const RecipeCardSummary: React.FC<RecipeCardSummaryProp> = (value) => {
 
          <CardActions disableSpacing sx={{ display: { xs: 'none', sm: 'block' } }}>
            <ExpandMore
-             expand={expanded}
              onClick={handleExpandClick}
              aria-expanded={expanded}
              aria-label="show more"
