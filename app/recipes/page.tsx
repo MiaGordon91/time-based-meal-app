@@ -1,4 +1,6 @@
 "use client"
+
+import { Suspense } from 'react';
 import Footer from '../components/Footer'
 import NavBar from '../components/NavBar'
 import RecipeCarousel from '../components/RecipeCarousel'
@@ -18,9 +20,13 @@ const Page = () => {
   return (
     <>
     <NavBar />
-    <RecipeCarousel recipeIds={queryParams} dietaryParams={dietaryParams} timeParams={timeParams}/>
+
+    <Suspense>
+      <RecipeCarousel recipeIds={queryParams} dietaryParams={dietaryParams} timeParams={timeParams}/>
+    </Suspense>
+    
     <Footer />
-    </>
+  </>
   )
 }
 
