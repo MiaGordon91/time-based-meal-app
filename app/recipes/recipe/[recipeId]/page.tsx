@@ -1,7 +1,3 @@
-"use client";
-
-import Footer from "./../../../components/Footer";
-import NavBar from "./../../../components/NavBar";
 import RecipeList from "@/app/components/RecipeList";
 import placeholderRecipes from "./../../../lib/placeholderRecipes.json";
 
@@ -15,9 +11,7 @@ const Page = ({ params }: { params: { recipeId: string } }) => {
 
   return (
     <>
-      <NavBar />
       <RecipeList recipeObject={selectedRecipe!} />
-      <Footer />
     </>
   );
 };
