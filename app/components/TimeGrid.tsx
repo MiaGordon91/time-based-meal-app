@@ -1,27 +1,23 @@
-import React, { useState } from 'react'
-import TimeSelector from './TimeSelector'
-import FindRecipeButton from './FindRecipeButton'
-import { Box, useMediaQuery, useTheme } from '@mui/material'
-import DietaryCheckBox from './DietaryCheckBox'
+"use client";
+
+import React, { useState } from "react";
+import TimeSelector from "./TimeSelector";
+import FindRecipeButton from "./FindRecipeButton";
+import { Box } from "@mui/material";
+import DietaryCheckBox from "./DietaryCheckBox";
+import useMediaQueryHook from "../hooks/useMediaQueryHook";
 
 const TimeGrid = () => {
 
-  const theme = useTheme();
-  
-  // Media queries for different breakpoints
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md')); // sm and below
-  
-  // Determine the size based on screen width
-  const checkBoxSize = isSmallScreen ? 'small' :'medium';
-  const labelFontSize = isSmallScreen ? '0.75rem':'1.25rem';
-
   const timeOptions = [
-    ['20', '20 minutes'],
-    ['30', '30 minutes'],
-    ['45', '45 minutes'],
-    ['60', '60 minutes'],
-    ['0', 'I\'m flexible']
+    ["20", "20 minutes"],
+    ["30", "30 minutes"],
+    ["45", "45 minutes"],
+    ["60", "60 minutes"],
+    ["0", "I'm flexible"]
   ];
+
+  const {checkBoxSize, labelFontSize} = useMediaQueryHook();
 
   //update state in parent component
   const [handleDietaries, setHandleDietaries] = useState<string[]>([]);
@@ -29,8 +25,7 @@ const TimeGrid = () => {
 
   const handleDietarySelection = (selectedItems: string[]) => {
     setHandleDietaries(selectedItems);
-  }
-
+  };
   
   return (
     <>
@@ -48,15 +43,15 @@ const TimeGrid = () => {
         />
 
         <FindRecipeButton 
-          values={'Find Me Recipes'}
+          values={"Find Me Recipes"}
           data={[handleDietaries, handleTime!]}
         />
       </Box>
 
     </Box>   
     </>
-  )
-}
+  );
+};
 
-export default TimeGrid
+export default TimeGrid;
 

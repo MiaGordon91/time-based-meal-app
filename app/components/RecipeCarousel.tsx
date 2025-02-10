@@ -1,7 +1,7 @@
-import React from 'react'
-import RecipeCardSummary from './RecipeCardSummary'
-import Grid from '@mui/material/Grid2'
-import { Typography } from '../MTailwind'
+import React from "react";
+import RecipeCardSummary from "./RecipeCardSummary";
+import Grid from "@mui/material/Grid2";
+import { Typography } from "../MTailwind";
 
 interface RecipeCarouselProps {
   recipeIds: string[]
@@ -11,7 +11,7 @@ interface RecipeCarouselProps {
 
 const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds = [], dietaryParams, timeParams}) => {
  
-  let mdSize = 0
+  let mdSize = 0;
 
   switch(recipeIds.length) {
     case 4: 
@@ -27,17 +27,17 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds = [], dietaryP
       mdSize = 12;
   }
     
-  const supportingText = 'A selection of carefully selected meal ideas suited to your dietaries and time preferences'
+  const supportingText = "A selection of carefully selected meal ideas suited to your dietaries and time preferences";
 
   function Header() {
-    const text = 'Recipes for you';
+    const text = "Recipes for you";
 
     return(
     <>
       <h1 className="font-bold md:text-4xl w-full text-center pb-4">{text}</h1>
       <h2 className="text-base md:text-3xl w-full text-center pb-2">Dietary: {dietaryParams?.replace(/^./, dietaryParams[0].toUpperCase())} | Cooking Time: {timeParams} minutes</h2>
     </>
-    )
+    );
   }
 
   return(
@@ -54,12 +54,12 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds = [], dietaryP
           </Grid> 
 
           {recipeIds?.map((x,index) => (
-            <Grid key={index} size={{xs: 6, md: mdSize}} sx={{ maxWidth: '600px', padding: '20px' }}>
+            <Grid key={index} size={{xs: 6, md: mdSize}} sx={{ maxWidth: "600px", padding: "20px" }}>
               <RecipeCardSummary data={null} value={parseInt(x)}/>
             </Grid> 
           ))}
       </Grid>
-  )
+  );
      
-}
-export default RecipeCarousel
+};
+export default RecipeCarousel;
