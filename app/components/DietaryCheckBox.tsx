@@ -1,11 +1,11 @@
-import { Box, FormControl, FormControlLabel, Checkbox, Typography, FormGroup, capitalize } from '@mui/material'
-import { pink } from '@mui/material/colors'
-import useDietarySelectionHook from '../hooks/useDietarySelectionHook';
+import { Box, FormControl, FormControlLabel, Checkbox, Typography, FormGroup, capitalize } from "@mui/material";
+import { pink } from "@mui/material/colors";
+import useDietarySelectionHook from "../hooks/useDietarySelectionHook";
 
 interface DietaryCheckBoxProps {
   onSelectionChange: (suitableRecipeIds: string[]) => void, //callback function to update state in parent
-  checkBoxSize: 'small' | 'medium', 
-  labelFontSiz: '0.75rem' | '1.25rem',
+  checkBoxSize: "small" | "medium",  //literal-type - represents a specific value
+  labelFontSiz: "0.75rem" | "1.25rem", //literal-type - represents a specific value
 }
 
 const DietaryCheckBox: React.FC<DietaryCheckBoxProps> = ({onSelectionChange, checkBoxSize, labelFontSiz}) => {
@@ -33,7 +33,7 @@ const DietaryCheckBox: React.FC<DietaryCheckBoxProps> = ({onSelectionChange, che
                 disabled={isCheckboxDisabled(dietary)}
                 sx={{
                   color: pink[800],
-                  '&.Mui-checked': {
+                  "&.Mui-checked": {
                   color: pink[600],
                   },
                 }}
@@ -41,7 +41,7 @@ const DietaryCheckBox: React.FC<DietaryCheckBoxProps> = ({onSelectionChange, che
           }
           label={capitalize(`${dietary}`)}
             sx={{
-              '& .MuiFormControlLabel-label': { fontSize: labelFontSiz },
+              "& .MuiFormControlLabel-label": { fontSize: labelFontSiz },
             }}        
           />
           ))}
@@ -49,7 +49,7 @@ const DietaryCheckBox: React.FC<DietaryCheckBoxProps> = ({onSelectionChange, che
       </FormControl>
     </Box>
     </>
-  )
-}
+  );
+};
 
-export default DietaryCheckBox
+export default DietaryCheckBox;

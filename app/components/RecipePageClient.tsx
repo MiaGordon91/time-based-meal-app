@@ -2,8 +2,6 @@
 
 import RecipeCarousel from "./../components/RecipeCarousel";
 import { useSearchParams } from "next/navigation";
-import Footer from "./../components/Footer";
-import NavBar from "./../components/NavBar";
 
 const RecipePageClient = () => {
   // retreive query params from query string
@@ -17,15 +15,13 @@ const RecipePageClient = () => {
 
   return (
     <>
-    <NavBar />
-        <RecipeCarousel 
+      <RecipeCarousel 
         recipeIds={queryParams}
         dietaryParams={dietaryParams}
         timeParams={timeParams}
-        />
-    <Footer />
+      />
     </>
-  )
-}
+  );
+};
 
-export default RecipePageClient
+export default RecipePageClient;

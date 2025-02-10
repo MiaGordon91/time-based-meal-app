@@ -1,7 +1,5 @@
-
-import { Box } from '@mui/material';
-import { Select, Option } from '../MTailwind';
-import { useState } from 'react';
+import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { useState } from "react";
 
 interface TimeSelectorInterface {
   values: string[][], 
@@ -13,39 +11,38 @@ const TimeSelector: React.FC<TimeSelectorInterface> = ({values, onValueChange}) 
   const [time, setTime] = useState<string | undefined>("");
 
   //update the state and notify the parent component by invoking the onValueChange callback 
+  const handleChange = (event: SelectChangeEvent) => {
 
-  //MTailWind Select provides the selected value straight to the OnChange callback
-  //so event.target.value isnt required
-  const handleChange = (selectedTime: string | undefined) => {
-
-    setTime(selectedTime);
+    setTime(event.target.value);
 
     if(onValueChange){
-      onValueChange(selectedTime);
+      onValueChange(event.target.value);
     }
   };
 
-  
   return (
     <>
-    <Box className="justify-center my-5">
-        <Select 
-          className="bg-white font-bold"
-          color="purple"
-          label="Select time frame" 
-          value={time}
-          name={time}
-          onChange={handleChange}
+    <Box className="justify-center my-5" sx={{ minWidth: 130 }}>
+      <FormControl fullWidth size="small">
+        <InputLabel id="demo-simple-select-label">Select Time</InputLabel>
+          <Select
+            labelId="time-select-label"
+            id="time-select"
+            value={time}
+            label="Select Time"
+            onChange={handleChange}
+            autoWidth
           >
-          {values.map(([value, text]) => (
-            <Option key={value} value={value}>
-              {text}
-            </Option>
-          ))}
-        </Select>
+            {values.map(([value, text]) => (
+              <MenuItem key={value} value={value}>
+                {text}
+              </MenuItem>
+            ))}
+          </Select>
+      </FormControl>
     </Box>
     </>     
-  )
-}
+  );
+};
 
-export default TimeSelector
+export default TimeSelector;

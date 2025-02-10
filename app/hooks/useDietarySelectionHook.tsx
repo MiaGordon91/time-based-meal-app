@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 const useDietarySelectionHook = (onSelectionChange: (suitableRecipeIds: string[]) => void ) => {
 
   // handle checkbox groups & define dietaries object which matches the value of each checkbox below 
@@ -21,7 +20,7 @@ const useDietarySelectionHook = (onSelectionChange: (suitableRecipeIds: string[]
       //Update the dietary selection state to conditionally disable checkboxes
       setDietaries((prevDietaries) => {
         const updatedDietaries =
-          value === 'none' ?
+          value === "none" ?
           {
               vegan: false, 
               vegetarian: false, 
@@ -36,7 +35,7 @@ const useDietarySelectionHook = (onSelectionChange: (suitableRecipeIds: string[]
             };
 
             return updatedDietaries;
-        })
+        });
 
 
       // loop over key of dietary object, if the key === the value of the 
@@ -51,16 +50,16 @@ const useDietarySelectionHook = (onSelectionChange: (suitableRecipeIds: string[]
         onSelectionChange(selectedItems);
 
         return selectedItems;
-      }
+      };
 
 
       // receive dietary as parameter and conditionally check what has been selected 
       // to trigger disabled functionality
       const isCheckboxDisabled = (dietary: string) => {
         // checks if any value of dietary object is true, except 'none' at index 4
-        return dietary === 'none' ? Object.values(dietaries).some((val, i) => i !== 4 && val) 
-        : dietaries.none
-      }
+        return dietary === "none" ? Object.values(dietaries).some((val, i) => i !== 4 && val) 
+        : dietaries.none;
+      };
 
 
     return {dietaries, handleDietarySelection, isCheckboxDisabled};

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import placeholderRecipes from "../lib/placeholderRecipes.json"
+import placeholderRecipes from "../lib/placeholderRecipes.json";
 
 const useRecipeSuitabilityHook = (data: [string[], string]) => {
 
     const [dietaries, time] = data;
-    const [suitableRecipeIds, setSuitableRecipeIds] = useState<number[]>([])
+    const [suitableRecipeIds, setSuitableRecipeIds] = useState<number[]>([]);
     const [errorMessage, setErrorMessage] = useState<string| null >(null);
 
     const handleClick = () => {
@@ -24,17 +24,17 @@ const useRecipeSuitabilityHook = (data: [string[], string]) => {
             if(recipeDietary.some(dietary => dietariesArray.includes(dietary) && recipe["time"] == time)){
                 suitableRecipeIds.push(recipe["id"]);   
             }
-        })  
+        });  
 
         setSuitableRecipeIds(suitableRecipeIds);
         setErrorMessage(null);
         
       } else {
-        setErrorMessage('Please select your dietary and time requirements');
+        setErrorMessage("Please select your dietary and time requirements");
       }
-    }
+    };
 
     return {handleClick, suitableRecipeIds, errorMessage, dietaries, time};
-}
+};
 
 export default useRecipeSuitabilityHook;

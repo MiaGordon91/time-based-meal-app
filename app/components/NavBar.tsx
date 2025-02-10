@@ -1,14 +1,14 @@
-'use clent';
+"use clent";
 
 import AppBar from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { Box, Toolbar } from "@mui/material";
 import { useState } from "react";
-import MenuIcon from '@mui/icons-material/Menu';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
+import RestaurantIcon from "@mui/icons-material/Restaurant";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
    
 
   const NavBar = () => {
@@ -17,14 +17,14 @@ import Menu from '@mui/material/Menu';
     
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
       setAnchorElNav(event.currentTarget);
-    }
+    };
 
     const handleCloseNavMenu = () => {
-      setAnchorElNav(null)
+      setAnchorElNav(null);
 
-    }
+    };
 
-    const pages = {'Home': '/', 'Find Recipes': '/', 'My Account': '/'};
+    const pages = {"Home": "/", "Find Recipes": "/", "My Account": "/"};
   
 
     return (
@@ -42,8 +42,8 @@ import Menu from '@mui/material/Menu';
                 mx: 1,
                 display: {xs:"none", sm:"flex"},
                 fontWeight: 700,
-                letterSpacing: '.2rem',
-                color: 'black',
+                letterSpacing: ".2rem",
+                color: "black",
             }}
           > FoodieGenie </Typography>
 
@@ -63,27 +63,27 @@ import Menu from '@mui/material/Menu';
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'center',
-                horizontal: 'left',
+                vertical: "center",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'center',
-                horizontal: 'right',
+                vertical: "center",
+                horizontal: "right",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
+              sx={{ display: { xs: "block", md: "none" } }}
               >
               {Object.keys(pages).map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center'}}>{page}</Typography>
+                  <Typography sx={{ textAlign: "center"}}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
         
-          <Box className="gap-4" sx={{ flexGrow: 0, display: { xs: 'none', sm: 'flex' } }}>
+          <Box className="gap-4" sx={{ flexGrow: 0, display: { xs: "none", sm: "flex" } }}>
             {Object.entries(pages).map(([page, route]) => (
               <IconButton className="text-black" key={page} href={route} size="small">{page}</IconButton>
             ))} 
@@ -94,7 +94,7 @@ import Menu from '@mui/material/Menu';
     </Box>  
     </>
     );
-  }
+  };
 
   export default NavBar;
   
