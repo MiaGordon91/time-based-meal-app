@@ -14,7 +14,9 @@
     "@material-tailwind/react": "^2.1.10",
     "@mui/icons-material": "^6.1.1",
     "@mui/material": "^6.1.1",
-    "next": "14.2.8",
+    "@neondatabase/serverless": "^0.10.4",
+    "next": "^14.2.24",
+    "postgres": "^3.4.5",
     "react": "^18",
     "react-dom": "^18",
     "react-router-dom": "^7.1.1"

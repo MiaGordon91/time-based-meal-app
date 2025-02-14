@@ -6,13 +6,14 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ExpandMore } from "@mui/icons-material";
 
 interface RecipeCardClientProps {
-  recipeId: number,
-  recipeName: string,
-  recipeTime: string,
-  recipeMethod: string
+  recipeId?: number,
+  recipeName?: string,
+  recipeTime?: string,
+  recipeMethod?: string
+  recipeImage?: string
 }
 
-const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName, recipeTime, recipeMethod}) => {
+const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName, recipeTime, recipeMethod, recipeImage}) => {
 
     const [expanded, setExpanded] = React.useState<boolean>(false);
 
@@ -26,8 +27,9 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
      <CardMedia
          className="rounded-lg"
          component="img"
-         image='/images/pasta.jpg'
-         alt="Paella dish" />
+         sx={{ height: {xs: 100, md: 200} }}
+         image={recipeImage}
+         alt={recipeName} />
          
          <Box className="shadow-2xl divide-y divide-solid">
 

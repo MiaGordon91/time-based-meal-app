@@ -1,13 +1,32 @@
 import Grid from "@mui/material/Grid2";
 import RecipeCardSummary from "./RecipeCardSummary";
 import { Typography } from "@mui/material";
+import postgres from "postgres";
 
+const sql: postgres.Sql = postgres(process.env.DATABASE_URL);
 
-interface TopRecipeGridProps {
-  data: number[]
+//TS interface representing returned data structure
+interface Recipe {
+  id: number;
+  name: string;
+  image_url: string;
+  dietary: string[];
+  time: string;
+  method: string;
 }
 
-const TopRecipeGrid: React.FC<TopRecipeGridProps> = ({data}) => {
+//explicitly return functions return value => Promise returning a Recipe interface
+async function getData(): Promise<Recipe[]> {
+  
+  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_url, dietary, time, method FROM recipes WHERE id IN (1, 2, 3, 4)`;
+
+  return response;
+}
+
+const TopRecipeGrid = async () => {
+
+  const recipes = await getData();
+
   return (
     <>
      <Grid 
@@ -32,9 +51,9 @@ const TopRecipeGrid: React.FC<TopRecipeGridProps> = ({data}) => {
             </Typography>
           </Grid>
 
-          {data.map((x) => (
-            <Grid size={{ xs:6, md: 3}} key={x}>
-              <RecipeCardSummary key={x} data={null} value={x}/>
+          {recipes.map((x) => (
+            <Grid size={{ xs:6, md: 3}} key={x.id}>
+              <RecipeCardSummary key={x.id} recipe={x}/>
             </Grid>
           ))}        
      </Grid>
