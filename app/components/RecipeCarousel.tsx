@@ -7,9 +7,12 @@ interface RecipeCarouselProps {
   recipeIds: string[]
   dietaryParams: string
   timeParams: string
+  recipes: string[]
 }
 
-const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds = [], dietaryParams, timeParams}) => {
+//retrieve ids from database and render
+
+const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds = [], dietaryParams, timeParams, recipes}) => {
  
   let mdSize = 0;
 
@@ -41,6 +44,7 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds = [], dietaryP
   }
 
   return(
+    <>
       <Grid
         container 
         className="md:px-7 mx-5 md:mx-9 pt-10"
@@ -52,13 +56,13 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds = [], dietaryP
           <Grid className='p-3 md:p- rounded-lg' size={{xs: 12}}>
             <Typography className="text-base md:text-2xl w-full text-center">{supportingText}</Typography>
           </Grid> 
-
-          {recipeIds?.map((x,index) => (
-            <Grid key={index} size={{xs: 6, md: mdSize}} sx={{ maxWidth: "600px", padding: "20px" }}>
-              <RecipeCardSummary data={null} value={parseInt(x)}/>
-            </Grid> 
-          ))}
+            {Object.entries(recipes).map(([index, recipe]) => (
+              <Grid key={index} size={{xs: 6, md: mdSize}} sx={{ maxWidth: "600px", padding: "20px" }}>
+                <RecipeCardSummary key={index} data={recipe}/>
+              </Grid> 
+            ))}
       </Grid>
+    </>
   );
      
 };
