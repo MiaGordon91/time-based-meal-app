@@ -4,6 +4,15 @@ import { useState, useEffect } from "react";
 import RecipeCarousel from "./../components/RecipeCarousel";
 import { useSearchParams } from "next/navigation";
 
+interface Recipe {
+  id: number;
+  name: string;
+  image_url: string;
+  dietary: string[];
+  time: string;
+  method: string;
+}
+
 const RecipePageClient = () => {
 
   // retreive query params from query string
@@ -12,23 +21,19 @@ const RecipePageClient = () => {
   const dietaryParams = searchParams.get("dietary") || "";
   const timeParams = searchParams.get("time") || "";
 
-  const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   useEffect(() => {
-
     const fetchRecipes = async () => {
-
       try {
-        if(!searchParams) return; //Doesn't run if there's no searchParams
-
-        const dietaryParams = searchParams.get("dietary") || "";
-        const timeParams = searchParams.get("time") || "";
-
+        //API Request URL with params
         const url = `/api/recipes?dietary=${dietaryParams}&time=${timeParams}`;
         console.log("Fetching from", url); //Debugging
 
         const response = await fetch(url);
-        const data = await response.json();
+        if(!response.ok) throw new Error("Failed to fetch");
+
+        const data: Recipe[] = (await response.json() as Recipe[]);
 
         setRecipes(data);
     } catch(error) {
@@ -36,12 +41,13 @@ const RecipePageClient = () => {
     }
   };
     void fetchRecipes();
-  }, [searchParams]);
+    //[dietaryParams, timeParams] is the dependency array, fetchRecipes() is called
+    //each time this changes. UseEffect is listening for changes
+  }, [dietaryParams, timeParams]);
 
   return (
     <>
       <RecipeCarousel 
-        recipeIds={["1"]}
         dietaryParams={dietaryParams}
         timeParams={timeParams}
         recipes={recipes}

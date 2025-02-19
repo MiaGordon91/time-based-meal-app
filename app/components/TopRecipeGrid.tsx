@@ -3,7 +3,7 @@ import RecipeCardSummary from "./RecipeCardSummary";
 import { Typography } from "@mui/material";
 import postgres from "postgres";
 
-const sql: postgres.Sql = postgres(process.env.DATABASE_URL);
+const sql: postgres.Sql = postgres(process.env.DATABASE_URL as string);
 
 //TS interface representing returned data structure
 interface Recipe {
@@ -51,9 +51,9 @@ const TopRecipeGrid = async () => {
             </Typography>
           </Grid>
 
-          {recipes.map((x) => (
+          {recipes.map((x, index) => (
             <Grid size={{ xs:6, md: 3}} key={x.id}>
-              <RecipeCardSummary key={x.id} recipe={x}/>
+              <RecipeCardSummary key={index} data={x}/>
             </Grid>
           ))}        
      </Grid>

@@ -1,6 +1,9 @@
 import postgres from "postgres";
 import { NextResponse } from "next/server";
 
+if(!process.env.DATABASE_URL) {
+    throw new Error("DATABASE_URL env variable is not set");
+}
 
 const sql: postgres.Sql = postgres(process.env.DATABASE_URL);
   
@@ -21,8 +24,7 @@ export async function GET(req: Request){
         `;
 
         // Raw SQL Translation example => 
-        // SELECT * FROM recipes 
-        // WHERE dietary && ARRAY['lactoseIntolerant', 'vegetarian'] AND time = '30';`;
+        // SELECT * FROM recipes WHERE dietary && ARRAY['lactoseIntolerant', 'vegetarian'] AND time = '30';`;
 
         return NextResponse.json(response);
     } catch (error) {

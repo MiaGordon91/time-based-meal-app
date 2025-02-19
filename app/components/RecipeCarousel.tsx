@@ -3,20 +3,27 @@ import RecipeCardSummary from "./RecipeCardSummary";
 import Grid from "@mui/material/Grid2";
 import { Typography } from "../MTailwind";
 
+interface Recipe {
+  id: number;
+  name: string;
+  image_url: string;
+  dietary: string[];
+  time: string;
+  method: string;
+}
+
 interface RecipeCarouselProps {
-  recipeIds: string[]
-  dietaryParams: string
-  timeParams: string
-  recipes: string[]
+  dietaryParams: string,
+  timeParams: string,
+  recipes: Recipe[],
 }
 
 //retrieve ids from database and render
-
-const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds = [], dietaryParams, timeParams, recipes}) => {
+const RecipeCarousel: React.FC<RecipeCarouselProps> = ({dietaryParams, timeParams, recipes}) => {
  
   let mdSize = 0;
 
-  switch(recipeIds.length) {
+  switch((Object.keys(recipes).length)) {
     case 4: 
       mdSize = 3;
       break;
@@ -38,7 +45,7 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds = [], dietaryP
     return(
     <>
       <h1 className="font-bold md:text-4xl w-full text-center pb-4">{text}</h1>
-      <h2 className="text-base md:text-3xl w-full text-center pb-2">Dietary: {dietaryParams?.replace(/^./, dietaryParams[0].toUpperCase())} | Cooking Time: {timeParams} minutes</h2>
+      <h2 className="text-base md:text-3xl w-full text-center pb-2">Dietary: {dietaryParams?.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}  | Cooking Time: {timeParams} minutes</h2>
     </>
     );
   }
@@ -56,7 +63,7 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({recipeIds = [], dietaryP
           <Grid className='p-3 md:p- rounded-lg' size={{xs: 12}}>
             <Typography className="text-base md:text-2xl w-full text-center">{supportingText}</Typography>
           </Grid> 
-            {Object.entries(recipes).map(([index, recipe]) => (
+            {Object.entries(recipes).map(([index,recipe]) => (
               <Grid key={index} size={{xs: 6, md: mdSize}} sx={{ maxWidth: "600px", padding: "20px" }}>
                 <RecipeCardSummary key={index} data={recipe}/>
               </Grid> 
