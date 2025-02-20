@@ -9,34 +9,29 @@ const databaseUrl = process.env.DATABASE_URL;
 
 const sql = postgres(databaseUrl);
 
-const dietaryOptions = ["lactoseIntolerant", "vegetarian", "vegan"] as const;
-const timeOptions = ["0", "15", "30", "45", "60"] as const;
+const dietaryOptions = ["lactoseIntolerant", "vegetarian", "vegan", "glutenFree", "none"] as const;
+const timeOptions = ["0", "20", "30", "45", "60"] as const;
 
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url); // creates a URL object that's destructured to access searchParams property
 
-    let time = "20";
-
     const dietaryQuery = searchParams.get("dietary");
 
-    const dietaryArray = dietaryQuery?.split(",").filter((dietary) => {
-      return dietary in dietaryOptions;
-    }) || ["none"];
+    const dietaryArray = dietaryQuery?.split(",").filter((dietary) => 
+        dietaryOptions.includes(dietary as typeof dietaryOptions[number])
+    ) || ["none"];
 
     const timeQuery = searchParams.get("time");
+    
+    let time = "0";
 
-    if (timeQuery != null && timeQuery in timeOptions) {
+    if (timeQuery != null && timeOptions.includes(timeQuery as typeof timeOptions[number])) {
       time = timeQuery;
     } else {
       // eslint-disable-next-line no-console
       console.error("Invalid time query:", timeQuery);
     }
-
-    // const dietary = searchParams.get("dietary")?.split(",") || [];
-    // const time = searchParams.get("time");
-
-    // console.log("Received params:", { dietary, time });
 
     const response = await sql`
             SELECT * FROM recipes  

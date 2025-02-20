@@ -6,7 +6,7 @@ interface RecipeCardSummaryProp {
 } 
 
 const RecipeCardSummary: React.FC<RecipeCardSummaryProp> = ({data}) => {
- 
+
  if(data){
   return (
     <RecipeCardClient 

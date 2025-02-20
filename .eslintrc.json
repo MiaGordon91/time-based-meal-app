@@ -30,8 +30,8 @@
       "react/jsx-no-undef": "error",
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
-      "semi": ["error", "always"],
-      "quotes": ["error", "double"],
+      "semi": ["warn", "always"],
+      "quotes": ["warn", "double"],
       "no-console": "warn"
     },
     "overrides": [
