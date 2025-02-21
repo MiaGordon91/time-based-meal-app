@@ -1,4 +1,4 @@
-const withMT = require("@material-tailwind/react/utils/withMT");
+import withMT from "@material-tailwind/react/utils/withMT";
 
 const config = {
   content: [
@@ -9,7 +9,7 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-bodoni_moda)']
+        sans: ["var(-roboto-flex)"]
       },
       colors: {
         background: "var(--background)",
@@ -21,4 +21,4 @@ const config = {
 };
 
 module.exports = withMT(config);
-// export default 
+

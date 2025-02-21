@@ -20,7 +20,7 @@ const Page = async ({searchParams}: {searchParams: {dietary: string, time: strin
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http"; // Use HTTPS in production
   const url = `${protocol}://${host}/api/recipes?dietary=${dietaryParams}&time=${timeParams}`;
   
-  const data = await fetch(url, { cache: "no-store" }); 
+  const data = await fetch(url, { cache: "force-cache" }); //retrieve data from local cache if refreshed instead of fetching resource again
 
   const recipes: Recipe[] = (await data.json() as Recipe[]);
 

@@ -1,46 +1,52 @@
-import { Card, CardContent, Divider, List, ListItem, Typography } from '@mui/material'
-import React from 'react'
+import { Card, CardContent, Divider, List, ListItem, Typography } from "@mui/material";
+import React from "react";
 
 interface CardListTemplateProps {
-    recipeObject: string[] | undefined;
+    recipeObject: string[] | string | undefined;
 }
 
 const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
  
-// ACTION => move into a hook 
+  // ACTION => move into a hook 
   let list; 
   let header;
 
   if(Array.isArray(recipeObject)){
    list =  
-   <List>
+    <List>
         {recipeObject.map((item) => (
         <>
         <Divider />
             <ListItem>
-                {item}
+                <Typography className="text-xs md:text-xl">
+                    {item}
+                </Typography> 
             </ListItem>
         <Divider />
         </>
         ))}
-    </List> 
-    header = 'Ingredients'
+    </List>; 
+    
+    header = "Ingredients";
   } 
   else {
-    list = <List>
-            <Divider />
+    list = 
+    <List>
+        <Divider />
+        <Typography className="text-xs md:text-xl pt-5">
             {recipeObject}
-            </List>
-    header = 'Method'
+        </Typography>        
+    </List>;
+    header = "Method";
   }
  
   return (
     <> 
     <Card
-        className="px-10"
+        className="px-8"
         sx={{ 
         maxWidth: "700px", 
-        minHeight: '600px'
+        minHeight: "600px"
     }}
     >
         <CardContent>
@@ -51,7 +57,7 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
         {list}
     </Card>
     </>
-  )
-}
+  );
+};
 
-export default CardListTemplate
+export default CardListTemplate;

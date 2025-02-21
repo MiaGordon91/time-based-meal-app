@@ -1,7 +1,7 @@
-import { Card, CardMedia, Typography } from '@mui/material';
-import Grid from '@mui/material/Grid2'
-import React from 'react'
-import CardListTemplate from './CardListTemplate';
+import { Card, CardMedia, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid2";
+import React from "react";
+import CardListTemplate from "./CardListTemplate";
 
 interface RecipeListProps {
     recipeObject: {id: number, name: string, image_url: string, dietary: string[], time: string, method: string, ingredients: string[] | undefined };
@@ -10,7 +10,7 @@ interface RecipeListProps {
  const RecipeList: React.FC<RecipeListProps> = ({recipeObject}) => {
 
  const ingredients = recipeObject ? recipeObject.ingredients : undefined;
- const method = recipeObject ? [recipeObject.method] : undefined;
+ const method = recipeObject ? recipeObject.method : undefined;
   
   return (
     <>
@@ -20,19 +20,18 @@ interface RecipeListProps {
     className='p-2 md:p-5 md:px-7 bg-gray-100 rounded-lg'
     justifyContent="center"
     >   
-        <Grid sx={{ maxWidth: '400px', padding: '20px' }}>
-            <Card sx={{ boxShadow: 'none', maxWidth: '400px', margin: '0 auto' }}> 
+        <Grid sx={{ maxWidth: "400px", padding: "20px" }}>
+            <Card sx={{ boxShadow: "none", maxWidth: "400px", margin: "0 auto" }}> 
                 <CardMedia
                     className="rounded-lg"
                     component="img"
-                    image='/images/pasta.jpg'
-                    alt="Paella dish" 
-                    // sx={{ width: '100%', maxWidth: '400px' }}
+                    image={recipeObject.image_url}
+                    alt={recipeObject.name}
                 />
             </Card>
         </Grid>
 
-        <Grid sx={{ maxWidth: '400px', padding: '20px' }}>
+        <Grid sx={{ maxWidth: "400px", padding: "20px" }}>
             <Typography 
                 className="font-bold text-base md:text-3xl pb-7" 
                 align="left">
@@ -55,13 +54,13 @@ interface RecipeListProps {
         container 
         spacing={2}
         justifyContent="center"
-        sx={{ padding: '20px' }} 
+        sx={{ padding: "20px" }} 
         >
         <CardListTemplate recipeObject={ingredients}/>
         <CardListTemplate recipeObject={method}/>
     </Grid>
     </>
-  )
-}
+  );
+};
 
-export default RecipeList
+export default RecipeList;
