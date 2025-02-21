@@ -38,14 +38,14 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
               <Typography className="text-xs md:text-base lg:text-lg font-bold pb-2">
                 {recipeName}
               </Typography>
+              <Typography>
+               {recipeTime} minutes
+             </Typography>
             </CardContent>
            </Link>
            
            <CardContent sx={{ display: { xs: "none", sm: "block" } }}>
-           <Typography sx={{ marginBottom: 2 }}>
-               Cooking Time: {recipeTime} minutes
-             </Typography>
-             <Typography variant="body2">
+             <Typography>
                This impressive paella is a perfect party dish and a fun meal to cook
                together with your guests. Add 1 cup of frozen peas along with the mussels,
                if you like.

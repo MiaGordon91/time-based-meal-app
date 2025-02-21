@@ -24,21 +24,21 @@ const TimeSelector: React.FC<TimeSelectorInterface> = ({values, onValueChange}) 
     <>
     <Box className="justify-center my-5" sx={{ minWidth: 130 }}>
       <FormControl fullWidth size="small">
-        <InputLabel id="demo-simple-select-label">Select Time</InputLabel>
-          <Select
-            labelId="time-select-label"
-            id="time-select"
-            value={time}
-            label="Select Time"
-            onChange={handleChange}
-            autoWidth
-          >
-            {values.map(([value, text]) => (
-              <MenuItem key={value} value={value}>
-                {text}
-              </MenuItem>
-            ))}
-          </Select>
+          <InputLabel id="demo-simple-select-label">Select Time</InputLabel>
+            <Select
+              labelId="time-select-label"
+              id="time-select"
+              value={time}
+              label="Select Time"
+              onChange={handleChange}
+              autoWidth
+            >
+              {values.map(([value, text]) => (
+                <MenuItem key={value} value={value}>                   
+                  {text}             
+                </MenuItem>
+              ))}
+            </Select>
       </FormControl>
     </Box>
     </>     

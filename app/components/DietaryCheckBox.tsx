@@ -1,4 +1,4 @@
-import { Box, FormControl, FormControlLabel, Checkbox, Typography, FormGroup, capitalize } from "@mui/material";
+import { Box, FormControl, FormControlLabel, Checkbox, Typography, FormGroup } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import useDietarySelectionHook from "../hooks/useDietarySelectionHook";
 
@@ -39,8 +39,8 @@ const DietaryCheckBox: React.FC<DietaryCheckBoxProps> = ({onSelectionChange, che
                 }}
             />
           }
-          label={capitalize(`${dietary}`)}
-            sx={{
+          label={dietary.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}
+          sx={{
               "& .MuiFormControlLabel-label": { fontSize: labelFontSiz },
             }}        
           />

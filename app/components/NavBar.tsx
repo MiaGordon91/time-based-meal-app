@@ -84,8 +84,12 @@ import Menu from "@mui/material/Menu";
           </Box>
         
           <Box className="gap-4" sx={{ flexGrow: 0, display: { xs: "none", sm: "flex" } }}>
-            {Object.entries(pages).map(([page, route]) => (
-              <IconButton className="text-black" key={page} href={route} size="small">{page}</IconButton>
+            {Object.entries(pages).map(([page, route]) => (      
+                <IconButton className="text-black" key={page} href={route} size="medium">
+                  <Typography>
+                    {page}
+                  </Typography>
+                </IconButton>            
             ))} 
           </Box> 
     
