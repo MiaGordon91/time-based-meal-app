@@ -19,6 +19,11 @@ const theme = createTheme({
   typography: {
     fontFamily: roboto_flex.style.fontFamily,
   },
+  palette: {
+    primary: {
+      main: "#ffffff"
+    }
+}
 });
 
 export default function RootLayout({
