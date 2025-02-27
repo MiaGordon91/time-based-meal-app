@@ -15,7 +15,6 @@ const Page = async ({searchParams}: {searchParams: {dietary: string, time: strin
   const dietaryParams = searchParams?.dietary || "";
   const timeParams = searchParams?.time || "";
 
-
   const host = headers().get("host");
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http"; // Use HTTPS in production
   const url = `${protocol}://${host}/api/recipes?dietary=${dietaryParams}&time=${timeParams}`;
@@ -24,9 +23,12 @@ const Page = async ({searchParams}: {searchParams: {dietary: string, time: strin
 
   const recipes: Recipe[] = (await data.json() as Recipe[]);
 
+  const supportingText = recipes.length == 0 ? "Sorry, we have no recipes that match your dietary and time requirements :(" : "A selection of carefully selected meal ideas suited to your dietaries and time preferences";
+
   return (
-    <>    
+    <>  
     <RecipeCarousel 
+        supportingText={supportingText}
         dietaryParams={dietaryParams}
         timeParams={timeParams}
         recipes={recipes}

@@ -1,7 +1,7 @@
 import React from "react";
 import RecipeCardSummary from "./RecipeCardSummary";
 import Grid from "@mui/material/Grid2";
-import { Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 
 interface Recipe {
   id: number;
@@ -50,7 +50,7 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({supportingText, dietaryP
           <Typography sx={{ fontWeight: 700, fontSize: {md: "2.25rem"}, width:"100%", textAlign: "center", paddingBottom: "0.5rem"}}>Recipes for you</Typography>
           <Typography sx={{ fontWeight: 500, fontSize: {xs: "1rem", md: "1.875rem"}, width:"100%", textAlign: "center", paddingBottom: "0.5rem"}}>{dietaryParams?.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}  | {timeParams} minutes</Typography>
         </Grid>
-        <Grid sx={{padding: "0.75rem", borderRadius: "0.5rem", backgroundColor: "#f5f5f5"}} size={{xs: 12}}>
+        <Grid sx={{padding: "0.75rem", borderRadius: "0.5rem"}} size={{xs: 12}}>
           <Typography sx={{ fontWeight: 500, fontSize: {xs: "1rem", md: "1.5rem"}, width:"100%", textAlign: "center", paddingTop: "0.5rem"}}>{supportingText}</Typography>
         </Grid>
       </Grid>
@@ -61,7 +61,21 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({supportingText, dietaryP
   // if no recipes are found do not render RecipeCardSummary Card
   if(recipes.length == 0) {
     return (
-      <Header />
+      <>
+      <Box sx={{padding: "0.5rem"}}>
+        <Header />
+        <Typography 
+          sx={{ 
+            fontWeight: 500, 
+            fontSize: {xs: "1rem", md: "1.5rem"}, 
+            width:"100%", textAlign: "center", 
+            paddingTop: "0.5rem"
+            }}>
+            Please click&nbsp; 
+          <Link href="/" sx={{color: "#000000", fontWeight: 600}}>here</Link> to update your preferences
+        </Typography>
+      </Box>
+      </>
     );  
   }
   return (

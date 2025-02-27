@@ -14,8 +14,17 @@ interface Recipe {
 }
 
 async function getRecipe(recipeId: number): Promise<Recipe[]> {
+
+  let selectedRecipeId = 0;
+
+  if (typeof(recipeId)=== "number") {
+    selectedRecipeId = recipeId;
+  } else {
+    // eslint-disable-next-line no-console
+    console.error("Invalid recipeId", recipeId);
+  }
   
-  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_url, dietary, time, method,ingredients FROM recipes WHERE id = ${recipeId}`;
+  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_url, dietary, time, method,ingredients FROM recipes WHERE id = ${selectedRecipeId}`;
 
   return response;
 }
