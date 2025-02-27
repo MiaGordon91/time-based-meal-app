@@ -17,13 +17,12 @@ interface RecipeListProps {
     <Grid 
     container 
     spacing={2} 
-    className='p-2 md:p-5 md:px-7 bg-gray-100 rounded-lg'
-    justifyContent="center"
+    sx={{padding:"0.5rem", backgroundColor: "#f5f5f5", justifyContent: "center"}}
     >   
         <Grid sx={{ maxWidth: "400px", padding: "20px" }}>
             <Card sx={{ boxShadow: "none", maxWidth: "400px", margin: "0 auto" }}> 
                 <CardMedia
-                    className="rounded-lg"
+                    sx={{borderRadius: "0.5rem"}}
                     component="img"
                     image={recipeObject.image_url}
                     alt={recipeObject.name}
@@ -33,18 +32,18 @@ interface RecipeListProps {
 
         <Grid sx={{ maxWidth: "400px", padding: "20px" }}>
             <Typography 
-                className="font-bold text-base md:text-3xl pb-7" 
+                sx={{fontWeight: "700", fontSize: {xs: "1rem", md: "1.875rem"}, paddingBottom: "1.75rem"}}
                 align="left">
                 {recipeObject.name}
             </Typography>
             <Typography 
-                className="text-xs md:text-xl font-bold pb-5" 
-                align="left">
+                sx={{fontWeight: "700", fontSize: {xs: "0.75rem", md: "1.25rem"}, paddingBottom: "1.25rem", align: "left"}}
+                >
                 Cooking Time: {recipeObject.time} minutes
             </Typography>
             <Typography 
-                className="text-xs md:text-xl" 
-                align="left">
+                sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, align: "left"}}
+            >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum quam sed semper dictum. Praesent tincidunt sapien nibh, non luctus eros molestie in. Suspendisse eu fringilla enim, eget tincidunt ipsum. Nulla hendrerit convallis cursus.
             </Typography>
         </Grid>
@@ -53,8 +52,7 @@ interface RecipeListProps {
     <Grid 
         container 
         spacing={2}
-        justifyContent="center"
-        sx={{ padding: "20px" }} 
+        sx={{ padding: "20px", justifyContent:"center" }} 
         >
         <CardListTemplate recipeObject={ingredients}/>
         <CardListTemplate recipeObject={method}/>

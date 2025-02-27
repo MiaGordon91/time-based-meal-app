@@ -1,58 +1,23 @@
-import { Typography } from "../MTailwind";
+import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
  
     const Footer = () => {
+
+    const footerOptions = {"@2023 FoodieGenie": "/","About Us": "/","License": "/", "Contribute": "/", "Contact Us": "/"};
+
     return (
-    <footer className="bottom-0 flex w-full flex-row wrap items-center justify-center bg-gray-100 py-2 lg:py-6 selection:text-center mt-8">
-        <ul className="flex flex-wrap justify-center gap-x-8">
-        
-            <li>
-                <Typography className="text-xs md:text-small lg:text-base">
-                    &copy; 2023 FoodieGenie
-                </Typography>
-            </li>
-        
-            <li>
-                <Typography
-                    as="a"
-                    href="#"
-                    className="text-xs md:text-small lg:text-base"
-                >
-                    About Us
-                </Typography>
-            </li>
-
-            <li>
-                <Typography
-                    as="a"
-                    href="#"
-                    className="text-xs md:text-small lg:text-base"
-                >
-                    License
-                </Typography>
-            </li>
-
-            <li>
-                <Typography
-                    as="a"
-                    href="#"
-                    className="text-xs md:text-small lg:text-base"
-                >
-                    Contribute
-                </Typography>
-            </li>
-
-            <li>
-                <Typography
-                    as="a"
-                    href="#"
-                    className="text-xs md:text-small lg:text-base"
-                >
-                    Contact Us
-                </Typography>
-            </li>
-
-        </ul>
-    </footer>
+    <>
+        <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0, display: "flex-wrap" }} elevation={1}>
+            <BottomNavigation
+            showLabels
+            >
+                {Object.entries(footerOptions).map(([text, link]) => (
+                    <BottomNavigationAction 
+                    sx={{fontSize: { xs: "1.25rem", lg: "1.5rem", xl: "1.875rem" }}} key={text} label={text} href={link}>
+                    </BottomNavigationAction>
+                ))}
+            </BottomNavigation>
+        </ Paper>
+    </>
     );
     };
     export default Footer;

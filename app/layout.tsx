@@ -1,29 +1,17 @@
-"use client";
 
 import "./globals.css";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { Roboto_Flex } from "next/font/google";
-import { createTheme } from "@mui/material";
+import theme from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
-
 
 
 const roboto_flex = Roboto_Flex({
   subsets: ["latin"],
   variable: "--font-roboto_flex",
   display: "swap"
-});
-
-const theme = createTheme({
-  typography: {
-    fontFamily: roboto_flex.style.fontFamily,
-  },
-  palette: {
-    primary: {
-      main: "#ffffff"
-    }
-}
 });
 
 export default function RootLayout({
@@ -34,13 +22,15 @@ export default function RootLayout({
   return (
     <>
     <html lang="en">
-      <ThemeProvider theme={theme}>
         <body className={`${roboto_flex.variable} font-sans`}> 
-          <Navbar />     
-          {children}
-          <Footer />
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={theme}>
+              <Navbar />     
+              {children}
+              <Footer />
+            </ThemeProvider>
+          </AppRouterCacheProvider>
         </body>
-      </ThemeProvider>
     </html>
     
     </>

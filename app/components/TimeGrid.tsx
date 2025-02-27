@@ -29,14 +29,14 @@ const TimeGrid = () => {
   
   return (
     <>
-    <Box className="flex flex-col justify-center gap-x-4 sm:mb-7 md:mt-6 bg-gray-100">
+    <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", columnGap: "1rem", backgroundColor: "#f5f5f5" }}>
       <DietaryCheckBox 
         onSelectionChange={handleDietarySelection} 
         checkBoxSize={checkBoxSize}
         labelFontSiz={labelFontSize}
       />
 
-      <Box className="justify-center sm:flex sm:flex-row sm:gap-x-2 md:mb-8">
+    <Box sx={{justifyContent: "center",  display: {sm: "flex"}, flexDirection: {sm: "row"}, marginBottom: {md: "2rem"} }}>
         <TimeSelector 
           values={timeOptions}
           onValueChange={setHandleTime}

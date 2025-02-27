@@ -25,17 +25,21 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
     <>
     <Card> 
      <CardMedia
-         className="rounded-lg"
          component="img"
-         sx={{ height: {xs: 100, md: 200} }}
+         sx={{ height: {xs: 100, md: 200}, borderRadius: "0.5rem" }}
          image={recipeImage}
          alt={recipeName} />
          
-         <Box className="shadow-2xl divide-y divide-solid">
+         <Box sx={{
+          boxShadow: 4,
+          borderTop: "1px solid",
+          borderBottom: "1px solid",
+          borderColor: "divider",  
+          }}>
 
           <Link href={`/recipes/recipe/${recipeId}`} sx={{color: "inherit"}}>
-            <CardContent className="pb-0">
-              <Typography className="text-xs md:text-base lg:text-lg font-bold pb-2">
+            <CardContent sx={{ paddingBottom: "0rem" }}>
+              <Typography sx={{ fontSize: {xs: "0.75rem", md: "1.5rem", lg: " 1.125rem"}, fontWeight: 700, width:"100%", paddingBottom: "0.5rem"}}>
                 {recipeName}
               </Typography>
               <Typography>
@@ -45,7 +49,7 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
            </Link>
            
            <CardContent sx={{ display: { xs: "none", sm: "block" } }}>
-             <Typography>
+             <Typography sx={{ fontSize: {xs: "0.75rem", md: "1rem"} }}>
                This impressive paella is a perfect party dish and a fun meal to cook
                together with your guests. Add 1 cup of frozen peas along with the mussels,
                if you like.

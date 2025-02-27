@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Typography, Button, createTheme, ThemeProvider } from "@mui/material";
-// import { Button } from "../MTailwind";
 import userRedirectorHook from "../hooks/useUserRedirectorHook";
 import Alert from "@mui/material/Alert";
 
@@ -31,7 +30,7 @@ const FindRecipeButton: React.FC<FindButtonRecipeButtonProps> = ({values, data})
  
   return (
     <ThemeProvider theme={theme}>
-      <Box className='relative flex justify-center items-center my-4'>
+      <Box sx={{position: "relative", display: "flex", justifyContent: "center", alignItems: "center", margin: "1rem",}}>
         <Button variant="contained" onClick={handleClick}>
           <Typography>
             {values}
@@ -39,8 +38,8 @@ const FindRecipeButton: React.FC<FindButtonRecipeButtonProps> = ({values, data})
         </Button>
         { errorMessage && (
           // absolute positioning to avoid it shifting the button when alert is thrown
-          <Box className="absolute top-1/2 left-full transform -translate-y-1/2 ml-4 mt-2 w-full" >
-            <Alert className="text-red-500 mt-2" variant="outlined" severity="warning" >
+          <Box sx={{ position: "absolute", top: "50%", left: "100%", transform: "translateY(-50%)", ml: 4, mt:2, width: "100%"}}>
+            <Alert sx={{color: "#f44336", marginTop: "0.5rem"}} variant="outlined" severity="warning">
               {errorMessage}
             </Alert>
           </Box>

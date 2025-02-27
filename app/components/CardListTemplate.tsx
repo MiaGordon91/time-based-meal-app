@@ -6,8 +6,6 @@ interface CardListTemplateProps {
 }
 
 const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
- 
-  // ACTION => move into a hook 
   let list; 
   let header;
 
@@ -18,7 +16,7 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
         <>
         <Divider />
             <ListItem>
-                <Typography className="text-xs md:text-xl">
+                <Typography sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}}}>
                     {item}
                 </Typography> 
             </ListItem>
@@ -33,7 +31,7 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
     list = 
     <List>
         <Divider />
-        <Typography className="text-xs md:text-xl pt-5">
+        <Typography sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, paddingTop: "1.25rem"}}>
             {recipeObject}
         </Typography>        
     </List>;
@@ -43,14 +41,14 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
   return (
     <> 
     <Card
-        className="px-8"
         sx={{ 
         maxWidth: "700px", 
-        minHeight: "600px"
+        minHeight: "600px",
+        padding: "2rem"
     }}
     >
         <CardContent>
-            <Typography className="font-bold text-xl">
+            <Typography sx={{fontSize: {xs: "1rem", md: "1.5rem"}, fontWeight: 700}}>
                 {header}
             </Typography>
         </CardContent>     

@@ -1,10 +1,7 @@
-"use clent";
-
 import AppBar from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { Box, Toolbar } from "@mui/material";
-import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import MenuItem from "@mui/material/MenuItem";
@@ -13,47 +10,46 @@ import Menu from "@mui/material/Menu";
 
   const NavBar = () => {
 
-    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+    // const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorElNav(event.currentTarget);
-    };
+    // const handleOpenNavMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    //   setAnchorElNav(event.currentTarget);
+    // };
 
-    const handleCloseNavMenu = () => {
-      setAnchorElNav(null);
+    // const handleCloseNavMenu = () => {
+    //   setAnchorElNav(null);
 
-    };
+    // };
 
     const pages = {"Home": "/", "Find Recipes": "/", "My Account": "/"};
   
 
     return (
       <>
-      <Box sx={{ flexGrow: 1 }}>
-
-      <AppBar className="py-2 sm:py-4 bg-inherit" position="static">
-        <Toolbar>
-          <RestaurantIcon className="text-black" sx={{ fontSize: {xs:30, lg:40}}}/>
+      <Box>
+      <AppBar sx={{paddingBlock:1, position:"static"}}>
+        <Toolbar sx={{ display: "flex" }}>
+          <RestaurantIcon sx={{ fontSize: {xs:30, lg:40}}}/>
           <Typography
-            className="text-xl lg:text-2xl xl:text-3xl"
             component="a"
             href="#app-bar-with-responsive-menu"
             sx={{
                 mx: 1,
                 display: {xs:"none", sm:"flex"},
+                fontSize: { xs: "1.25rem", lg: "1.5rem", xl: "1.875rem" },
                 fontWeight: 700,
                 letterSpacing: ".2rem",
                 color: "black",
             }}
           > FoodieGenie </Typography>
 
-          <Box className="flex justify-end" sx={{flexGrow:1, display: {xs:"flex", sm: "none"} }}>
+          <Box sx={{flexGrow:1, display: {xs:"flex", sm: "none"} }}>
             <IconButton
                 size="small"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleOpenNavMenu}
+                // onClick={handleOpenNavMenu}
                 color="default"
               >
                 <MenuIcon sx={{ display: {xs:"flex", sm: "none"} }}/>
@@ -61,7 +57,7 @@ import Menu from "@mui/material/Menu";
 
             <Menu
               id="menu-appbar"
-              anchorEl={anchorElNav}
+              // anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "center",
                 horizontal: "left",
@@ -71,21 +67,22 @@ import Menu from "@mui/material/Menu";
                 vertical: "center",
                 horizontal: "right",
               }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              open={false}
+              // open={Boolean(anchorElNav)}
+              // onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
               >
               {Object.keys(pages).map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page}>
                   <Typography sx={{ textAlign: "center"}}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
         
-          <Box className="gap-4" sx={{ flexGrow: 0, display: { xs: "none", sm: "flex" } }}>
+          <Box sx={{ ml: "auto", display: { xs: "none", sm: "flex" }, gap: 2}}>
             {Object.entries(pages).map(([page, route]) => (      
-                <IconButton className="text-black" key={page} href={route} size="medium">
+                <IconButton key={page} href={route} size="medium">
                   <Typography>
                     {page}
                   </Typography>

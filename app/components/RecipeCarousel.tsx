@@ -1,7 +1,7 @@
 import React from "react";
 import RecipeCardSummary from "./RecipeCardSummary";
 import Grid from "@mui/material/Grid2";
-import { Typography } from "../MTailwind";
+import { Typography } from "@mui/material";
 
 interface Recipe {
   id: number;
@@ -13,13 +13,14 @@ interface Recipe {
 }
 
 interface RecipeCarouselProps {
+  supportingText: string
   dietaryParams: string,
   timeParams: string,
   recipes: Recipe[],
 }
 
 //retrieve ids from database and render
-const RecipeCarousel: React.FC<RecipeCarouselProps> = ({dietaryParams, timeParams, recipes}) => {
+const RecipeCarousel: React.FC<RecipeCarouselProps> = ({supportingText, dietaryParams, timeParams, recipes}) => {
  
   let mdSize = 0;
 
@@ -36,33 +37,40 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({dietaryParams, timeParam
     case 1:
       mdSize = 12;
   }
-    
-  const supportingText = "A selection of carefully selected meal ideas suited to your dietaries and time preferences";
+  
 
   function Header() {
-    const text = "Recipes for you";
-
-    return(
-    <>
-      <Typography className="font-bold md:text-4xl w-full text-center pb-4">{text}</Typography>
-      <Typography className="text-base md:text-3xl w-full text-center pb-2">{dietaryParams?.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}  | {timeParams} minutes</Typography>
-    </>
+    return (
+      <>
+      <Grid
+        container 
+        sx={{paddingInline: {md: "1.75rem" }}}
+        >
+        <Grid sx={{padding: "0.5rem", backgroundColor: "#f5f5f5"}} size={{xs: 12}}>
+          <Typography sx={{ fontWeight: 700, fontSize: {md: "2.25rem"}, width:"100%", textAlign: "center", paddingBottom: "0.5rem"}}>Recipes for you</Typography>
+          <Typography sx={{ fontWeight: 500, fontSize: {xs: "1rem", md: "1.875rem"}, width:"100%", textAlign: "center", paddingBottom: "0.5rem"}}>{dietaryParams?.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}  | {timeParams} minutes</Typography>
+        </Grid>
+        <Grid sx={{padding: "0.75rem", borderRadius: "0.5rem", backgroundColor: "#f5f5f5"}} size={{xs: 12}}>
+          <Typography sx={{ fontWeight: 500, fontSize: {xs: "1rem", md: "1.5rem"}, width:"100%", textAlign: "center", paddingTop: "0.5rem"}}>{supportingText}</Typography>
+        </Grid>
+      </Grid>
+      </>
     );
   }
 
-  return(
-    <>
-      <Grid
-        container 
-        className="md:px-7 mx-5 md:mx-9 pt-10"
-        justifyContent="center"
+  // if no recipes are found do not render RecipeCardSummary Card
+  if(recipes.length == 0) {
+    return (
+      <Header />
+    );  
+  }
+  return (
+      <>
+       <Grid
+        container
+        sx={{justifyContent:"center", padding: "1.75rem"}}
         >
-          <Grid className='p-2 md:p-5 bg-gray-100 rounded-lg' size={{xs: 12}}>
-            <Header />
-          </Grid>
-          <Grid className='p-3 md:p- rounded-lg' size={{xs: 12}}>
-            <Typography className="text-base md:text-2xl w-full text-center">{supportingText}</Typography>
-          </Grid> 
+          <Header />
             {Object.entries(recipes).map(([index,recipe]) => (
               <Grid key={index} size={{xs: 6, md: mdSize}} sx={{ maxWidth: "600px", padding: "20px" }}>
                 <RecipeCardSummary key={index} data={recipe}/>

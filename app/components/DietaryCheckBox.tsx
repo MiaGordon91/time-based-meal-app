@@ -14,14 +14,15 @@ const DietaryCheckBox: React.FC<DietaryCheckBoxProps> = ({onSelectionChange, che
 
   return (
     <>
-    <Box className="flex flex-col items-center pt-4 bg-gray-100">
+    <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "1rem", backgroundColor: "#f5f5f5" }}>
       <FormControl>
-        <Typography className="text-sm md:text-lg lg:text-2xl text-center px-6 pb-2 md:py-6">
+
+        <Typography sx={{ fontSize: { xs:"0.875rem", sm: "1.125rem", lg:"1.5rem"}, textAlign: "center", padding: "0.5rem"}}>
             Select your preferred time frame and dietary requirements below and let us find tonights dinner for you.
         </Typography>
         
         <FormGroup
-            className="flex flex-row justify-center items-center"
+            sx={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}
             aria-labelledby="demo-row-radio-buttons-group-label"
         >
           {Object.entries(dietaries).map(([dietary, checked]) => (
