@@ -10,24 +10,63 @@ interface Recipe {
   method: string;
 }
 
-const Page = async ({searchParams}: {searchParams: {dietary: string, time: string} }) => {
+const isRecipeArray = (recipes: unknown): recipes is Recipe[] => {
+  if (
+    Array.isArray(recipes) &&
+    recipes.every(
+      (recipe) =>
+        typeof recipe === "object" &&
+        recipe !== null &&
+        "id" in recipe &&
+        "name" in recipe &&
+        "image_url" in recipe &&
+        "dietary" in recipe &&
+        "time" in recipe &&
+        "method" in recipe
+    )
+  ) {
+    return true;
+  }
 
+  // eslint-disable-next-line no-console
+  console.error("Invalid recipe array", recipes);
+  return false;
+};
+
+const Page = async ({
+  searchParams,
+}: {
+  searchParams: { dietary: string; time: string };
+}) => {
   const dietaryParams = searchParams?.dietary || "";
   const timeParams = searchParams?.time || "";
 
   const host = headers().get("host");
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http"; // Use HTTPS in production
   const url = `${protocol}://${host}/api/recipes?dietary=${dietaryParams}&time=${timeParams}`;
-  
+
   const data = await fetch(url, { cache: "force-cache" }); //retrieve data from local cache if refreshed instead of fetching resource again
 
-  const recipes: Recipe[] = (await data.json() as Recipe[]);
+  const jsonResponse = (await data.json()) as unknown;
 
-  const supportingText = recipes.length == 0 ? "Sorry, we have no recipes that match your dietary and time requirements :(" : "A selection of carefully selected meal ideas suited to your dietaries and time preferences";
+  let recipes: Recipe[] = [];
+  let supportingText =
+    "A selection of carefully selected meal ideas suited to your dietaries and time preferences";
+  if (isRecipeArray(jsonResponse)) {
+    recipes = jsonResponse;
+  } else {
+    // eslint-disable-next-line no-console
+    console.error("Invalid recipe array");
+    // try sanisiting
+
+    // then throw
+    supportingText =
+      "Sorry, we have no recipes that match your dietary and time requirements :(";
+  }
 
   return (
-    <>  
-    <RecipeCarousel 
+    <>
+      <RecipeCarousel
         supportingText={supportingText}
         dietaryParams={dietaryParams}
         timeParams={timeParams}
