@@ -6,7 +6,7 @@ const sql: postgres.Sql = postgres(process.env.DATABASE_URL as string);
 interface Recipe {
   id: number;
   name: string;
-  image_url: string;
+  image_path: string;
   dietary: string[];
   time: string;
   method: string;
@@ -23,8 +23,8 @@ async function getRecipe(recipeId: number): Promise<Recipe[]> {
     // eslint-disable-next-line no-console
     console.error("Invalid recipeId", recipeId);
   }
-  
-  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_url, dietary, time, method,ingredients FROM recipes WHERE id = ${selectedRecipeId}`;
+
+  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method,ingredients FROM recipes WHERE id = ${selectedRecipeId}`;
 
   return response;
 }

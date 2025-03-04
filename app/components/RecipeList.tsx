@@ -4,7 +4,7 @@ import React from "react";
 import CardListTemplate from "./CardListTemplate";
 
 interface RecipeListProps {
-    recipeObject: {id: number, name: string, image_url: string, dietary: string[], time: string, method: string, ingredients: string[] | undefined };
+    recipeObject: {id: number, name: string, image_path: string, dietary: string[], time: string, method: string, ingredients: string[] | undefined };
 }
 
  const RecipeList: React.FC<RecipeListProps> = ({recipeObject}) => {
@@ -24,7 +24,7 @@ interface RecipeListProps {
                 <CardMedia
                     sx={{borderRadius: "0.5rem"}}
                     component="img"
-                    image={recipeObject.image_url}
+                    image={recipeObject.image_path}
                     alt={recipeObject.name}
                 />
             </Card>

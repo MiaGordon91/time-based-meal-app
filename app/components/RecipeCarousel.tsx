@@ -6,7 +6,7 @@ import { Box, Link, Typography } from "@mui/material";
 interface Recipe {
   id: number;
   name: string;
-  image_url: string;
+  image_path: string;
   dietary: string[];
   time: string;
   method: string;

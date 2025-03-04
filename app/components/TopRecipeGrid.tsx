@@ -9,7 +9,7 @@ const sql: postgres.Sql = postgres(process.env.DATABASE_URL as string);
 interface Recipe {
   id: number;
   name: string;
-  image_url: string;
+  image_path: string;
   dietary: string[];
   time: string;
   method: string;
@@ -18,7 +18,7 @@ interface Recipe {
 //explicitly return functions return value => Promise returning a Recipe interface
 async function getData(): Promise<Recipe[]> {
   
-  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_url, dietary, time, method FROM recipes WHERE id IN (1, 2, 3, 4)`;
+  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method FROM recipes WHERE id IN (1, 2, 3, 4)`;
 
   return response;
 }
