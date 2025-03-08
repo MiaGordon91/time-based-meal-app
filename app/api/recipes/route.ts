@@ -45,6 +45,6 @@ export async function GET(req: Request) {
 
     return NextResponse.json(response);
   } catch (error) {
-    return NextResponse.json({ error: "Database error" }, { status: 500 });
+    return NextResponse.json({ error }, { status: 500 });
   }
 }

@@ -15,7 +15,7 @@ const HeroBlock = () => {
             <Box sx={{textAlign: "center", padding: "0.5rem", backgroundColor: "rgb(0 0 0 / 0.4)", width: {md: "75%"}, }}>
                 <Typography
                     color="white" 
-                    sx={{marginBottom: "0.75rem", fontSize: { xs:"1.125rem", sm: "1.875rem", lg:"2.25rem", xl:"3rem"}, fontWeight: {sm: 700}}}
+                    sx={{marginBottom: {sm: "0.75rem"}, fontSize: { xs:"1.125rem", sm: "1.875rem", lg:"2.25rem", xl:"3rem"}, fontWeight: {xs: 600, sm: 700}}}
                     >
                     Not sure what to have for dinner?
                 </Typography>

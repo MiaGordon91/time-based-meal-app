@@ -25,7 +25,7 @@ export default function RootLayout({
         <body className={`${roboto_flex.variable} font-sans`}> 
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
-              <Navbar />     
+              <Navbar links={{ "Home":"/" }}/>     
               {children}
               <Footer />
             </ThemeProvider>

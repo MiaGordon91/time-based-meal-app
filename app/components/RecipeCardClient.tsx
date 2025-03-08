@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {Box, Card, CardActions, CardContent, CardMedia, Collapse, Link, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ExpandMore } from "@mui/icons-material";
@@ -15,7 +15,7 @@ interface RecipeCardClientProps {
 
 const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName, recipeTime, recipeMethod, recipeImage}) => {
 
-    const [expanded, setExpanded] = React.useState<boolean>(false);
+    const [expanded, setExpanded] = useState<boolean>(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
