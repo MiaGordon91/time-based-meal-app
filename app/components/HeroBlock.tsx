@@ -10,6 +10,7 @@ const HeroBlock = () => {
             src={heroBlockImage}
             alt="paella image"
             className="h-20 md:h-60 w-full object-cover"
+            priority={true}
         />
         <Box sx={{display: "grid", flexDirection: "column", position: "absolute", inset: "0px", width: "100%", placeItems: "center" }}>
             <Box sx={{textAlign: "center", padding: "0.5rem", backgroundColor: "rgb(0 0 0 / 0.4)", width: {md: "75%"}, }}>

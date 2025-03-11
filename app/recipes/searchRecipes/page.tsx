@@ -1,4 +1,4 @@
-import RecipeCarousel from "../components/RecipeCarousel";
+import RecipeCarousel from "../../components/RecipeCarousel";
 import { headers } from "next/headers";
 
 interface Recipe {
@@ -32,47 +32,48 @@ const isRecipeArray = (recipes: unknown): recipes is Recipe[] => {
   }
 
   // eslint-disable-next-line no-console
-  console.error("Invalid recipe array", recipes);
+  console.error("Invalid user input array", recipes);
   return false;
 };
 
 const Page = async ({
   searchParams,
 }: {
-  searchParams: { dietary: string; time: string };
+  searchParams: { input: string };
 }) => {
-  const dietaryParams = searchParams?.dietary || "";
-  const timeParams = searchParams?.time || "";
-
+  const inputParams = searchParams?.input || "";
+  
   const host = headers().get("host");
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http"; // Use HTTPS in production
-  const url = `${protocol}://${host}/api/recipes?dietary=${dietaryParams}&time=${timeParams}`;
+  const url = `${protocol}://${host}/api/searchRecipes?input=${inputParams}`;
 
-  const data = await fetch(url); 
+  const data = await fetch(url, {cache: "force-cache"}); 
 
   const jsonResponse = (await data.json()) as unknown;
 
   let recipes: Recipe[] = [];
-  let supportingText =
-    "A selection of carefully selected meal ideas suited to your dietaries and time preferences";
+  let supportingText = ""; 
 
   if (isRecipeArray(jsonResponse)) {
     recipes = jsonResponse;
+
+    const recipeCount = recipes.length;
+    
+    supportingText = recipes.length === 1 ? "Showing 1 result" : "Showing " + recipeCount + " results";
   } else {
     // eslint-disable-next-line no-console
-    console.error("Invalid recipe array");
-    // try sanisiting
-    // then throw
+    console.error("Invalid user input array");
+
     supportingText =
-      "Sorry, we have no recipes that match your dietary and time requirements :(";
+      "Sorry, we have no recipes that match your search :(";
   }
 
   return (
     <>
       <RecipeCarousel
         supportingText={supportingText}
-        dietaryParams={dietaryParams}
-        timeParams={timeParams}
+        dietaryParams={null}
+        timeParams={null}
         recipes={recipes}
       />
     </>
