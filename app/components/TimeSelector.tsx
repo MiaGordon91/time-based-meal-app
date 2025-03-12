@@ -22,7 +22,7 @@ const TimeSelector: React.FC<TimeSelectorInterface> = ({values, onValueChange}) 
 
   return (
     <>
-    <Box sx={{ minWidth: 130, justifyContent: "center", marginTop: "1.25rem", marginBottom: "1.25rem", backgroundColor: "#FFFFFF"}}>
+    <Box sx={{ minWidth: 130, justifyContent: "center", marginTop: "1.25rem", marginBottom: "1.25rem", backgroundColor: "#FFFFFF",  marginLeft: {xs: 10, sm:0}, marginRight: {xs: 10, sm:0}}}>
       <FormControl fullWidth size="small" sx={{ color:"#000000"}}>
           <InputLabel id="demo-simple-select-label" >Select Time</InputLabel>
             <Select

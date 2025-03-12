@@ -3,7 +3,9 @@
 import React, { useState } from "react";
 import {Box, Card, CardActions, CardContent, CardMedia, Collapse, Link, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { ExpandMore } from "@mui/icons-material";
+import { pink } from "@mui/material/colors";
 
 interface RecipeCardClientProps {
   recipeId?: number,
@@ -39,12 +41,12 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
 
           <Link href={`/recipes/recipe/${recipeId}`} sx={{color: "inherit"}}>
             <CardContent sx={{ paddingBottom: "0rem" }}>
-              <Typography sx={{ fontSize: {xs: "0.75rem", md: "1.5rem", lg: " 1.125rem"}, fontWeight: 700, width:"100%", paddingBottom: "0.5rem"}}>
+              <Typography sx={{ fontSize: {xs: "0.75rem", md: "1.25rem"}, fontWeight: 700, width:"100%", paddingBottom: "0.5rem"}}>
                 {recipeName}
               </Typography>
-              <Typography>
-               {recipeTime} minutes
-             </Typography>
+
+              <Typography sx={{ fontSize: {xs: "0.75rem", md: "1rem"} }}> <AccessTimeFilledIcon sx={{ display:{xs:"none", sm: "inline"}, color: pink[500]}} /> {recipeTime} mins </Typography>
+      
             </CardContent>
            </Link>
            
