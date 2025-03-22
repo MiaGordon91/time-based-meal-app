@@ -33,9 +33,10 @@ export async function GET(req: Request) {
       console.error("Invalid time query:", timeQuery);
     }
 
+    // explicitly type cast dietary array as text[] when used in dynamic queries
     const response = await sql`
             SELECT * FROM recipes  
-            WHERE dietary && ${sql.array(dietaryArray)}
+            WHERE dietary && ${sql.array(dietaryArray)}::text[]
             AND time = ${time}
             ORDER BY id DESC;
         `;

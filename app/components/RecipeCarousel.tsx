@@ -17,31 +17,48 @@ interface RecipeCarouselProps {
   supportingText: string
   dietaryParams: string | null,
   timeParams: string | null,
-  recipes: Recipe[],
+  recipes?: Recipe[],
 }
 
 //retrieve ids from database and render
 const RecipeCarousel: React.FC<RecipeCarouselProps> = ({supportingText, dietaryParams, timeParams, recipes}) => {
-
  
   let mdSize = 0;
 
-  switch((Object.keys(recipes).length) || recipes.length) {
-    case 4: 
-      mdSize = 3;
-      break;
-    case 3:
-      mdSize = 4;
-      break;
-    case 2:
-      mdSize = 6;
-      break;
-    case 1:
-      mdSize = 12;
+  if(recipes){
+    switch((Object.keys(recipes).length) || recipes.length) {
+      case 4: 
+        mdSize = 3;
+        break;
+      case 3:
+        mdSize = 4;
+        break;
+      case 2:
+        mdSize = 6;
+        break;
+      case 1:
+        mdSize = 12;
+    }
   }
   
   // if no recipes are found do not render RecipeCardSummary Card
-  if(recipes.length == 0) {
+  if(recipes) {
+    return (
+      <>
+        <Grid
+          container
+          sx={{justifyContent:"center", padding: "1.75rem"}}
+          >
+            <RecipeCarouselHeader text={supportingText} dietaryParams={dietaryParams} timeParams={timeParams} />
+              {Object.entries(recipes).map(([index,recipe]) => (
+                <Grid key={index} size={{xs: 6, md: mdSize}} sx={{ maxWidth: "600px", padding: "20px" }}>
+                  <RecipeCardSummary key={index} data={recipe}/>
+                </Grid> 
+              ))}
+        </Grid>
+      </> 
+    );  
+    } else {
     return (
       <>
       <Box sx={{padding: "0.5rem"}}>
@@ -57,22 +74,6 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({supportingText, dietaryP
           <Link href="/" sx={{color: "#000000", fontWeight: 600}}>here</Link> to update your preferences
         </Typography>
       </Box>
-      </>
-    );  
-  } else {
-    return (
-        <>
-        <Grid
-          container
-          sx={{justifyContent:"center", padding: "1.75rem"}}
-          >
-            <RecipeCarouselHeader text={supportingText} dietaryParams={dietaryParams} timeParams={timeParams} />
-              {Object.entries(recipes).map(([index,recipe]) => (
-                <Grid key={index} size={{xs: 6, md: mdSize}} sx={{ maxWidth: "600px", padding: "20px" }}>
-                  <RecipeCardSummary key={index} data={recipe}/>
-                </Grid> 
-              ))}
-        </Grid>
       </>
     );
   }    

@@ -41,7 +41,7 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
 
           <Link href={`/recipes/recipe/${recipeId}`} sx={{color: "inherit"}}>
             <CardContent sx={{ paddingBottom: "0rem" }}>
-              <Typography sx={{ fontSize: {xs: "0.75rem", md: "1.25rem"}, fontWeight: 700, width:"100%", paddingBottom: "0.5rem"}}>
+              <Typography sx={{ fontSize: {xs: "0.75rem", sm:"1rem", md: "1.25rem"}, fontWeight: 700, width:"100%", paddingBottom: "0.5rem"}}>
                 {recipeName}
               </Typography>
 
@@ -71,8 +71,8 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
     
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
-        <Typography sx={{ marginBottom: 2 }}>Method:</Typography>
-        <Typography sx={{ marginBottom: 2 }}>
+        <Typography sx={{ marginBottom: 2, fontWeight: 800, fontSize: {xs: "0.75rem", md: "1.25rem"} }}>Method:</Typography>
+        <Typography sx={{ marginBottom: 2, fontSize: {xs: "0.75rem", md: "1rem"}  }}>
           {recipeMethod}
         </Typography>
       </CardContent>

@@ -36,7 +36,7 @@ const TimeGrid = () => {
         labelFontSiz={labelFontSize}
       />
 
-    <Box sx={{justifyContent: "center",  display: {sm: "flex"}, flexDirection: {sm: "row"}, marginBottom: {md: "2rem"} }}>
+    <Box sx={{justifyContent: "center",  display: {sm: "flex"}, flexDirection: {sm: "row"}, marginBottom: {md: "1rem"} }}>
         <TimeSelector 
           values={timeOptions}
           onValueChange={setHandleTime}

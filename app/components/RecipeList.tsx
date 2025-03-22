@@ -32,7 +32,7 @@ interface RecipeListProps {
             </Card>
         </Grid>
 
-        <Grid sx={{ maxWidth: "400px", padding: {md: "20px"} }}>
+        <Grid sx={{ maxWidth: "400px", padding: {md: "20px"}, paddingBottom:"1rem" }}>
             <Typography 
                 sx={{fontWeight: "700", fontSize: {xs: "1rem", md: "1.875rem"}, paddingBottom: {sm: "0.5rem", md: "1rem"}}}
                 align="left">

@@ -12,11 +12,11 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
   if(Array.isArray(recipeObject)){
    list =  
     <List>
-        {recipeObject.map((item) => (
+        {recipeObject.map((item, index) => (
         <>
         <Divider />
             <ListItem>
-                <Typography sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}}}>
+                <Typography key={index} sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}}}>
                     {item}
                 </Typography> 
             </ListItem>
@@ -42,8 +42,8 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
     <> 
     <Card
         sx={{ 
-        maxWidth: "700px", 
-        minHeight: "600px",
+        maxWidth:{sm: "500px", md:"700px"}, 
+        minHeight:"300px",
         padding: "2rem"
     }}
     >

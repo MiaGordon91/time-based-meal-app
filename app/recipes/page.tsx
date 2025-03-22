@@ -12,13 +12,14 @@ interface Recipe {
 }
 
 const isRecipeArray = (recipes: unknown): recipes is Recipe[] => {
-  if (
+ if (
     Array.isArray(recipes) &&
+    recipes.length > 0 &&
     recipes.every(
       (recipe) =>
         typeof 
         recipe === "object" &&
-        recipe !== null &&
+        recipe != null &&
         "id" in recipe &&
         "name" in recipe &&
         "image_path" in recipe &&
@@ -48,35 +49,46 @@ const Page = async ({
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http"; // Use HTTPS in production
   const url = `${protocol}://${host}/api/recipes?dietary=${dietaryParams}&time=${timeParams}`;
 
-  const data = await fetch(url); 
+  const data = await fetch(url);
 
   const jsonResponse = (await data.json()) as unknown;
 
   let recipes: Recipe[] = [];
-  let supportingText =
-    "A selection of carefully selected meal ideas suited to your dietaries and time preferences";
+  let supportingText = "";
 
   if (isRecipeArray(jsonResponse)) {
     recipes = jsonResponse;
+  
+    supportingText = "A selection of carefully selected meal ideas suited to your dietaries and time preferences";
   } else {
     // eslint-disable-next-line no-console
     console.error("Invalid recipe array");
-    // try sanisiting
-    // then throw
-    supportingText =
+ 
+    supportingText =  
       "Sorry, we have no recipes that match your dietary and time requirements :(";
   }
 
-  return (
-    <>
+  if(recipes.length > 0) {
+    return (
+      <>
+          <RecipeCarousel
+            supportingText={supportingText}
+            dietaryParams={dietaryParams}
+            timeParams={timeParams}
+            recipes={recipes}
+          />
+      </>
+    );
+  } else {
+    return (
       <RecipeCarousel
-        supportingText={supportingText}
-        dietaryParams={dietaryParams}
-        timeParams={timeParams}
-        recipes={recipes}
-      />
-    </>
-  );
+      supportingText={supportingText}
+      dietaryParams={dietaryParams}
+      timeParams={timeParams}
+    />
+    );
+  }
+  
 };
 
 export default Page;

@@ -32,13 +32,13 @@ const TopRecipeGrid = async () => {
      <Grid 
         container 
         spacing={{ xs: 2 }}
-        sx={{paddingTop: "0.5rem", paddingInline: "1.75rem"}}
+        sx={{paddingTop: "2rem", paddingInline: "1.75rem"}}
         >
           <Grid size={{xs: 12}}>
             <Typography
                 sx={{fontWeight: "800", fontSize: {xs: "1.125rem", md: "1.875rem"}, width:"100%", textAlign: "center" }}
                 >
-                See what everyone&apos;s raving about this month
+                See what everyone&apos;s raving about this month...
             </Typography>
           </Grid>
 
@@ -46,7 +46,7 @@ const TopRecipeGrid = async () => {
             <Typography
               sx={{ display: { xs: "none", sm: "block" }, fontSize: {xs: "1rem", md: "1.25rem"}, width:"100%", textAlign: "center", marginBottom: "1rem"}}
               >
-              Here are our most popular recipes - tried, tested and utterly delicious!
+              Here&apos;s our most popular recipes - tried, tested and utterly delicious!
             </Typography>
           </Grid>
 

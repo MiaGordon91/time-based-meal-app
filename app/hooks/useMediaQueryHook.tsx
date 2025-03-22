@@ -11,7 +11,7 @@ const useMediaQueryHook = () => {
     return {
       // Determine the size based on screen width
       checkBoxSize: isSmallScreen ? "small" : "medium",
-      labelFontSize: isSmallScreen ? "0.75rem" : "1.25rem",
+      labelFontSize: isSmallScreen ? "0.85rem" : "1.25rem",
       searchBarWidth: isSmallScreen ? 50 : 200,
       isSmallScreen
 

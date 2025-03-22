@@ -32,7 +32,7 @@ const FindRecipeButton: React.FC<FindButtonRecipeButtonProps> = ({values, data})
     <ThemeProvider theme={theme}>
       <Box sx={{position: "relative", display: "flex", justifyContent: "center", alignItems: "center", margin: "1rem",}}>
         <Button variant="contained" onClick={handleClick}>
-          <Typography>
+          <Typography sx={{ fontSize:{xs:"0.5rem", sm:"0.75rem", md:"1rem"}}}>
             {values}
           </Typography>
         </Button>

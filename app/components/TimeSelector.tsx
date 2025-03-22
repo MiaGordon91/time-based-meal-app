@@ -22,9 +22,9 @@ const TimeSelector: React.FC<TimeSelectorInterface> = ({values, onValueChange}) 
 
   return (
     <>
-    <Box sx={{ minWidth: 130, justifyContent: "center", marginTop: "1.25rem", marginBottom: "1.25rem", backgroundColor: "#FFFFFF",  marginLeft: {xs: 10, sm:0}, marginRight: {xs: 10, sm:0}}}>
+    <Box sx={{ minWidth:{xs:60, sm:120, md: 140}, justifyContent: "center", marginTop: "1.25rem", marginBottom: "1.25rem", backgroundColor: "#FFFFFF",  marginLeft: {xs: 10, sm:0}, marginRight: {xs: 10, sm:0}}}>
       <FormControl fullWidth size="small" sx={{ color:"#000000"}}>
-          <InputLabel id="demo-simple-select-label" >Select Time</InputLabel>
+          <InputLabel id="demo-simple-select-label" sx={{fontSize:{xs: "0.75rem", sm:"0.85rem", md:"1rem"} }}>Select Time</InputLabel>
             <Select
               labelId="time-select-label"
               id="time-select"
@@ -34,7 +34,7 @@ const TimeSelector: React.FC<TimeSelectorInterface> = ({values, onValueChange}) 
               autoWidth
             >
               {values.map(([value, text]) => (
-                <MenuItem key={value} value={value}>                   
+                <MenuItem key={value} value={value} sx={{fontSize:{xs: "0.75rem", md:"1rem"} }}>                   
                   {text}             
                 </MenuItem>
               ))}
