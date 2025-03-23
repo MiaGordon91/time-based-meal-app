@@ -35,11 +35,11 @@ export async function GET(req: Request) {
 
     // explicitly type cast dietary array as text[] when used in dynamic queries
     const response = await sql`
-            SELECT * FROM recipes  
-            WHERE dietary && ${sql.array(dietaryArray)}::text[]
-            AND time = ${time}
-            ORDER BY id DESC;
-        `;
+        SELECT * FROM recipes  
+        WHERE ${sql.array(dietaryArray)} && dietary::text[]
+        AND time = ${time}
+        ORDER BY id DESC;
+      `;
 
     // Raw SQL Translation example =>
     // SELECT * FROM recipes WHERE dietary && ARRAY['lactoseIntolerant', 'vegetarian'] AND time = '30';`;
