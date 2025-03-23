@@ -32,19 +32,19 @@ interface RecipeListProps {
             </Card>
         </Grid>
 
-        <Grid sx={{ maxWidth: "400px", padding: {md: "20px"}, paddingBottom:"1rem" }}>
+        <Grid sx={{ maxWidth: "400px", padding: {xs: "1rem", md: "1.25rem"}, paddingBottom: "1rem" }}>
             <Typography 
-                sx={{fontWeight: "700", fontSize: {xs: "1rem", md: "1.875rem"}, paddingBottom: {sm: "0.5rem", md: "1rem"}}}
+                sx={{fontWeight: "700", fontSize: {xs: "1rem", md: "1.875rem"}, paddingBottom: {xs: "1rem", md: "1.5rem"}, paddingTop:{md:"1rem"} }}
                 align="left">
                 {recipeObject.name}
             </Typography>
             <Typography 
-                sx={{fontWeight: "600", fontSize: {xs: "0.75rem", md: "1rem", lg: "1.25rem"}, paddingBottom: {xs: "1rem"}}}
+                sx={{fontWeight: "600", fontSize: {xs: "0.75rem", md: "1rem", lg: "1.25rem"}, paddingBottom: "1.5rem" }}
                 >
                 <AccessTimeFilledIcon sx={{ display:{xs:"none", sm: "inline"}, color: pink[500], verticalAlign:{ md: "middle", lg: "text-bottom"} }} /> {recipeObject.time} minutes
             </Typography>
             <Typography 
-                sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, align: "left"}}
+                sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, align: "left", paddingBottom: {xs: "1rem", md: "1.5rem"}}}
             >
                 {recipeObject.recipe_summary}
             </Typography>

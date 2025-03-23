@@ -1,5 +1,5 @@
-import { Card, CardContent, Divider, List, ListItem, Typography } from "@mui/material";
-import React from "react";
+import { Card, CardActions, CardContent, Divider, List, ListItem, Typography } from "@mui/material";
+import BackLink from "./BackLink";
 
 interface CardListTemplateProps {
     recipeObject: string[] | string | undefined;
@@ -29,12 +29,23 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
   } 
   else {
     list = 
+    <>
     <List>
         <Divider />
-        <Typography sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, paddingTop: "1.25rem"}}>
+        <Typography sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, paddingTop: "1.25rem", padding: "2rem"}}>
             {recipeObject}
         </Typography>        
-    </List>;
+    </List>
+    <CardActions 
+        sx={{ 
+            padding: "1.75rem",
+            paddingTop:"5rem"
+        }}>
+
+        <BackLink />
+    </CardActions>
+    </>;
+
     header = "Method";
   }
  
@@ -44,7 +55,7 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
         sx={{ 
         maxWidth:{sm: "500px", md:"700px"}, 
         minHeight:"300px",
-        padding: "2rem"
+        padding:{xs:"1rem", md:"2rem"}
     }}
     >
         <CardContent>
@@ -52,7 +63,7 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
                 {header}
             </Typography>
         </CardContent>     
-        {list}
+        {list}    
     </Card>
     </>
   );
