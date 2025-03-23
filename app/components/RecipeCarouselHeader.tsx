@@ -13,18 +13,12 @@ const RecipeCarouselHeader: React.FC<RecipeCarouselHeaderProps> = ({ text, dieta
     if(dietaryParams != null && timeParams != null) {
         return (
             <>
-            <Grid
-            container 
-            sx={{paddingInline: {md: "1.75rem" }}}
-            >
             <Grid sx={{padding: "0.5rem", backgroundColor: "#f5f5f5"}} size={{xs: 12}}>
                 <Typography sx={{ fontWeight: 700, fontSize: {xs: "1.25rem", md: "1.875rem"}, width:"100%", textAlign: "center", paddingBottom: "0.5rem"}}>Recipes for you</Typography>
-                <Typography sx={{ fontWeight: 500, fontSize: {xs: "1rem", md: "1.5rem"}, width:"100%", textAlign: "center", paddingBottom: "0.5rem"}}>{timeParams} minutes</Typography> 
-                <Typography sx={{ fontWeight: 500, fontSize: {xs: "1rem", md: "1.5rem"}, width:"100%", textAlign: "center", paddingBottom: "0.5rem"}}>{dietaryParams?.replace(/([A-Z])/g, " $1")}</Typography>
+                <Typography sx={{ fontWeight: 500, fontSize: {xs: "1rem", md: "1.5rem"}, width:"100%", textAlign: "center", paddingBottom: "0.5rem"}}>{timeParams} minutes | {dietaryParams?.replace(/([A-Z])/g, " $1")}</Typography> 
             </Grid>
             <Grid sx={{padding: "0.75rem", borderRadius: "0.5rem"}} size={{xs: 12}}>
-                <Typography sx={{ fontWeight: 500, fontSize: {xs: "1rem", md: "1.5rem"}, width:"100%", textAlign: "center", paddingTop: "0.5rem"}}>{text}</Typography>
-            </Grid>
+                <Typography sx={{ fontWeight: 500, fontSize: {xs: "1rem", md: "1.5rem"}, width:"100%", textAlign: "center", paddingTop:{xs:"0.5rem", sm:"2rem"} }}>{text}</Typography>
             </Grid>
             </>
         );
