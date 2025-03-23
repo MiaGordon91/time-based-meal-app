@@ -1,5 +1,6 @@
 import RecipeCarousel from "../components/RecipeCarousel";
 import { headers } from "next/headers";
+import TopRecipeGrid from "../components/TopRecipeGrid";
 
 interface Recipe {
   id: number;
@@ -9,6 +10,7 @@ interface Recipe {
   time: string;
   method: string;
   ingredients: string[];
+  recipe_summary: string;
 }
 
 const isRecipeArray = (recipes: unknown): recipes is Recipe[] => {
@@ -26,7 +28,8 @@ const isRecipeArray = (recipes: unknown): recipes is Recipe[] => {
         "dietary" in recipe &&
         "time" in recipe &&
         "method" in recipe &&
-        "ingredients" in recipe 
+        "ingredients" in recipe &&
+        "recipe_summary" in recipe
     )
   ) {
     return true;
@@ -42,7 +45,7 @@ const Page = async ({
 }: {
   searchParams: { dietary: string; time: string };
 }) => {
-  const dietaryParams = searchParams?.dietary || "";
+  let dietaryParams = searchParams?.dietary || "";
   const timeParams = searchParams?.time || "";
 
   const host = headers().get("host");
@@ -65,30 +68,35 @@ const Page = async ({
     console.error("Invalid recipe array");
  
     supportingText =  
-      "Sorry, we have no recipes that match your dietary and time requirements :(";
+      "Sorry, we have no recipes that match your dietary and time requirements";
   }
+
+  //uppercase first letter of each dietary
+  dietaryParams = dietaryParams.split(",").map(item => item.substring(0,1).toUpperCase()+item.substring(1)).join(", ");
 
   if(recipes.length > 0) {
     return (
       <>
-          <RecipeCarousel
-            supportingText={supportingText}
-            dietaryParams={dietaryParams}
-            timeParams={timeParams}
-            recipes={recipes}
-          />
+        <RecipeCarousel
+          supportingText={supportingText}
+          dietaryParams={dietaryParams}
+          timeParams={timeParams}
+          recipes={recipes}
+        />
       </>
     );
-  } else {
-    return (
-      <RecipeCarousel
-      supportingText={supportingText}
-      dietaryParams={dietaryParams}
-      timeParams={timeParams}
-    />
-    );
-  }
-  
+    } else {
+      return (
+        <>
+        <RecipeCarousel
+        supportingText={supportingText}
+        dietaryParams={dietaryParams}
+        timeParams={timeParams}
+        />
+        <TopRecipeGrid />
+      </>
+      );
+    }
 };
 
 export default Page;

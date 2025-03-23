@@ -11,10 +11,11 @@ interface Recipe {
   dietary: string[];
   time: string;
   method: string;
+  recipe_summary: string;
 }
 
 interface RecipeCarouselProps {
-  supportingText: string
+  supportingText: string,
   dietaryParams: string | null,
   timeParams: string | null,
   recipes?: Recipe[],
@@ -61,19 +62,24 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({supportingText, dietaryP
     } else {
     return (
       <>
-      <Box sx={{padding: "0.5rem"}}>
-        <RecipeCarouselHeader text={supportingText} dietaryParams={dietaryParams} timeParams={timeParams} />
-        <Typography 
-          sx={{ 
-            fontWeight: 500, 
-            fontSize: {xs: "1rem", md: "1.5rem"}, 
-            width:"100%", textAlign: "center", 
-            paddingTop: "0.5rem"
-            }}>
-            Please click&nbsp; 
-          <Link href="/" sx={{color: "#000000", fontWeight: 600}}>here</Link> to update your preferences
-        </Typography>
-      </Box>
+        <Box sx={{marginTop: "1rem", padding: "0.5rem", }}>
+          <RecipeCarouselHeader dietaryParams={dietaryParams} timeParams={timeParams} />
+
+          <Box sx={{marginTop:{md:"1rem"}, padding: "0.5rem", marginBottom:{sm:"1rem", md:"5rem"}}}>
+            
+            <Typography sx={{ fontWeight: 500, fontSize: {xs: "1rem", md: "1.5rem"}, width:"100%", textAlign: "center", paddingTop:{ sm:"0.5rem", md:"1.5rem"} }}>{supportingText}</Typography>
+            <Typography 
+              sx={{ 
+                fontWeight: 500, 
+                fontSize: {xs: "1rem", md: "1.5rem"}, 
+                width:"100%", textAlign: "center", 
+                paddingTop: "0.5rem"
+                }}>
+                Please click&nbsp; 
+              <Link href="/" sx={{color: "#000000", fontWeight: 600}}>here</Link> to update your preferences
+            </Typography>
+          </Box>
+        </Box>
       </>
     );
   }    

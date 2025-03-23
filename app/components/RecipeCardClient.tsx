@@ -11,11 +11,12 @@ interface RecipeCardClientProps {
   recipeId?: number,
   recipeName?: string,
   recipeTime?: string,
-  recipeMethod?: string
-  recipeImage?: string
+  recipeMethod?: string,
+  recipeImage?: string,
+  recipeSummary?: string,
 }
 
-const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName, recipeTime, recipeMethod, recipeImage}) => {
+const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName, recipeTime, recipeMethod, recipeImage, recipeSummary}) => {
 
     const [expanded, setExpanded] = useState<boolean>(false);
 
@@ -50,11 +51,9 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
             </CardContent>
            </Link>
            
-           <CardContent sx={{ display: { xs: "none", sm: "block" } }}>
+           <CardContent sx={{ display: { xs: "none", sm: "block" }, minHeight:{sm:80, md:140, lg: 120} }}>
              <Typography sx={{ fontSize: {xs: "0.75rem", md: "1rem"} }}>
-               This impressive paella is a perfect party dish and a fun meal to cook
-               together with your guests. Add 1 cup of frozen peas along with the mussels,
-               if you like.
+               {recipeSummary}
              </Typography>
            </CardContent>
          </Box>

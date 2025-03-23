@@ -6,7 +6,7 @@ import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { pink } from "@mui/material/colors";
 
 interface RecipeListProps {
-    recipeObject: {id: number, name: string, image_path: string, dietary: string[], time: string, method: string, ingredients: string[] | undefined };
+    recipeObject: {id: number, name: string, image_path: string, dietary: string[], time: string, method: string, ingredients: string[], recipe_summary: string | undefined };
 }
 
  const RecipeList: React.FC<RecipeListProps> = ({recipeObject}) => {
@@ -46,7 +46,7 @@ interface RecipeListProps {
             <Typography 
                 sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, align: "left"}}
             >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum quam sed semper dictum. Praesent tincidunt sapien nibh, non luctus eros molestie in. Suspendisse eu fringilla enim, eget tincidunt ipsum. Nulla hendrerit convallis cursus.
+                {recipeObject.recipe_summary}
             </Typography>
         </Grid>
     </Grid>

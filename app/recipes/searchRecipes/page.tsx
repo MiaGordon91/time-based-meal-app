@@ -9,6 +9,7 @@ interface Recipe {
   time: string;
   method: string;
   ingredients: string[];
+  recipe_summary: string;
 }
 
 const isRecipeArray = (recipes: unknown): recipes is Recipe[] => {
@@ -25,7 +26,8 @@ const isRecipeArray = (recipes: unknown): recipes is Recipe[] => {
         "dietary" in recipe &&
         "time" in recipe &&
         "method" in recipe &&
-        "ingredients" in recipe 
+        "ingredients" in recipe &&
+        "recipe_summary" in recipe 
     )
   ) {
     return true;

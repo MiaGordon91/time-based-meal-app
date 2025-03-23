@@ -13,12 +13,13 @@ interface Recipe {
   dietary: string[];
   time: string;
   method: string;
+  recipe_summary: string;
 }
 
 //explicitly return functions return value => Promise returning a Recipe interface
 async function getData(): Promise<Recipe[]> {
   
-  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method FROM recipes WHERE id IN (1, 2, 3, 4)`;
+  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method, recipe_summary FROM recipes WHERE id IN (1, 2, 3, 4)`;
 
   return response;
 }
