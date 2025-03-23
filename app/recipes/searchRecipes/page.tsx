@@ -1,3 +1,4 @@
+import TopRecipeGrid from "@/app/components/TopRecipeGrid";
 import RecipeCarousel from "../../components/RecipeCarousel";
 import { headers } from "next/headers";
 
@@ -15,6 +16,7 @@ interface Recipe {
 const isRecipeArray = (recipes: unknown): recipes is Recipe[] => {
   if (
     Array.isArray(recipes) &&
+    recipes.length > 0 &&
     recipes.every(
       (recipe) =>
         typeof 
@@ -56,6 +58,7 @@ const Page = async ({
   let recipes: Recipe[] = [];
   let supportingText = ""; 
 
+
   if (isRecipeArray(jsonResponse)) {
     recipes = jsonResponse;
 
@@ -67,19 +70,32 @@ const Page = async ({
     console.error("Invalid user input array");
 
     supportingText =
-      "Sorry, we have no recipes that match your search :(";
+      "Sorry, we have no recipes that match your search";
   }
 
-  return (
-    <>
-      <RecipeCarousel
+  if(recipes.length > 0) {
+    return (
+      <>
+        <RecipeCarousel
         supportingText={supportingText}
         dietaryParams={null}
         timeParams={null}
         recipes={recipes}
       />
-    </>
-  );
+      </>
+    );
+    } else {
+      return (
+        <>
+        <RecipeCarousel
+        supportingText={supportingText}
+        dietaryParams={null}
+        timeParams={null}
+        />
+        <TopRecipeGrid />
+      </>
+      );
+    }
 };
 
 export default Page;

@@ -32,7 +32,7 @@ const RecipeCarouselHeader: React.FC<RecipeCarouselHeaderProps> = ({ text, dieta
         return (
             <>
             <Grid sx={{padding: "0.5rem", backgroundColor: "#f5f5f5"}} size={12}>
-                <Typography sx={{ fontWeight: 700, fontSize: {md: "2.25rem"}, width:"100%", textAlign: "center", paddingBottom: "0.5rem"}}>Your search results</Typography>
+                <Typography sx={{ fontWeight: 700, fontSize: {xs: "1.25rem", md: "1.875rem"}, width:"100%", textAlign: "center", padding: {xs: "0.5rem", md: "1.5rem"}}}>Your search results</Typography>
             </Grid>
             <Grid sx={{padding: "0.75rem", borderRadius: "0.5rem"}} size={12}>
                 <Typography sx={{ fontWeight: 600, fontSize: {xs: "1rem", md: "1.5rem"}, width:"100%", textAlign: "center", paddingTop: "0.5rem"}}>{text}</Typography>
