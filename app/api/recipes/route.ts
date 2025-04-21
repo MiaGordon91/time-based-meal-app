@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import postgres from "postgres";
 import { NextResponse } from "next/server";
 
@@ -16,13 +17,16 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url); // creates a URL object that's destructured to access searchParams property
 
-    const dietaryQuery = searchParams.get("dietary");
+    const dietaryQuery = searchParams.get("dietary") ?? "none";
 
-    const dietaryArray = dietaryQuery?.split(",").filter((dietary) => 
+    const dietaryArray: string[] = dietaryQuery?.split(",").filter((dietary) => 
         dietaryOptions.includes(dietary as typeof dietaryOptions[number])
-    ) || ["none"];
+    ) || ["none"] as string[];
+ 
+    console.log("dietaryArray");
+    console.log(dietaryArray);
 
-    const timeQuery = searchParams.get("time");
+    const timeQuery = searchParams.get("time") ?? "0";
     
     let time = "0";
 
@@ -33,16 +37,12 @@ export async function GET(req: Request) {
       console.error("Invalid time query:", timeQuery);
     }
 
-    // explicitly type cast dietary array as text[] when used in dynamic queries
     const response = await sql`
-        SELECT * FROM recipes  
-        WHERE ${sql.array(dietaryArray)} && dietary::text[]
-        AND time = ${time}
-        ORDER BY id DESC;
-      `;
-
-    // Raw SQL Translation example =>
-    // SELECT * FROM recipes WHERE dietary && ARRAY['lactoseIntolerant', 'vegetarian'] AND time = '30';`;
+      SELECT * FROM recipes  
+      WHERE dietary && ${dietaryArray}
+      AND time = ${time}
+      ORDER BY id DESC;
+    `;
 
     return NextResponse.json(response);
   } catch (error) {
