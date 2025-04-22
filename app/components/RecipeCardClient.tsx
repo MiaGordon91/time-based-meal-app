@@ -51,7 +51,7 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
             </CardContent>
            </Link>
            
-           <CardContent sx={{ display: { xs: "none", sm: "block" }, minHeight:{sm:80, md:140, lg: 120} }}>
+           <CardContent sx={{ display: { xs: "none", sm: "block" }, height:{sm:80, md:120} }}>
              <Typography sx={{ fontSize: {xs: "0.75rem", md: "1rem"} }}>
                {recipeSummary}
              </Typography>

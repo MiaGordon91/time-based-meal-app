@@ -20,16 +20,16 @@ export async function GET(req: Request) {
 
     if(inputQuery !== "" && inputQuery != null){
       userInputArray = inputQuery.split(" ");
-    } else {
+    } else if(!inputQuery){
     //   eslint-disable-next-line no-console
       console.error("Invalid user input");
     }
 
     const response = await sql`
-        SELECT * FROM recipes  
-        WHERE name ILIKE ANY (${sql.array(userInputArray.map(word => `%${word}%`))})
-        ORDER BY id DESC;
-        `;
+      SELECT * FROM recipes  
+      WHERE name ILIKE ANY (${sql.array(userInputArray.map(word => `%${word}%`))})
+      ORDER BY id DESC;
+    `;
 
     return NextResponse.json(response);
   } catch (error) {

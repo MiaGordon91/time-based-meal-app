@@ -28,8 +28,7 @@ const isRecipeArray = (recipes: unknown): recipes is Recipe[] => {
         "dietary" in recipe &&
         "time" in recipe &&
         "method" in recipe &&
-        "ingredients" in recipe &&
-        "recipe_summary" in recipe 
+        "ingredients" in recipe     
     )
   ) {
     return true;
@@ -67,7 +66,7 @@ const Page = async ({
     supportingText = recipes.length === 1 ? "Showing 1 result" : "Showing " + recipeCount + " results";
   } else {
     // eslint-disable-next-line no-console
-    console.error("Invalid user input array");
+    console.error("Invalid response");
 
     supportingText =
       "Sorry, we have no recipes that match your search";

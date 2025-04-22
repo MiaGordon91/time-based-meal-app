@@ -1,6 +1,8 @@
 import RecipeCarousel from "../components/RecipeCarousel";
 import { headers } from "next/headers";
 import TopRecipeGrid from "../components/TopRecipeGrid";
+import { Suspense } from "react";
+import LoadingSkeleton from "../components/LoadingSkeleton";
 
 interface Recipe {
   id: number;
@@ -62,13 +64,13 @@ const Page = async ({
   if (isRecipeArray(jsonResponse)) {
     recipes = jsonResponse;
   
-    supportingText = "A selection of carefully selected meal ideas suited to your dietaries and time preferences";
+    supportingText = "Here's a selection of carefully selected meal ideas suited to your dietary and time preferences.";
   } else {
     // eslint-disable-next-line no-console
     console.error("Invalid recipe array");
  
     supportingText =  
-      "Sorry, we have no recipes that match your dietary and time requirements";
+      "Sorry, we have no recipes that match your dietary and time requirements.";
   }
 
   //uppercase first letter of each dietary
@@ -77,12 +79,14 @@ const Page = async ({
   if(recipes.length > 0) {
     return (
       <>
+        <Suspense fallback={<LoadingSkeleton/>}>
         <RecipeCarousel
           supportingText={supportingText}
           dietaryParams={dietaryParams}
           timeParams={timeParams}
           recipes={recipes}
         />
+        </Suspense>
       </>
     );
     } else {
