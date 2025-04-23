@@ -50,7 +50,7 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({supportingText, dietaryP
           container
           sx={{justifyContent:"center", padding:{ md:"1.75rem" } }}
           >
-            <Grid size={12} sx={{justifyContent:"center", padding: {xs: "1rem", sm:"1.75rem"} }}>
+            <Grid size={12} sx={{justifyContent:"center", padding: {xs: "1rem", sm:"1.75rem"}}}>
             <RecipeCarouselHeader text={supportingText} dietaryParams={dietaryParams} timeParams={timeParams} />
             </Grid>
               {Object.entries(recipes).map(([index,recipe]) => (

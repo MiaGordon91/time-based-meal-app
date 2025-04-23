@@ -65,12 +65,13 @@ const Page = async ({
     recipes = jsonResponse;
   
     supportingText = "Here's a selection of carefully selected meal ideas suited to your dietary and time preferences.";
+  
   } else {
     // eslint-disable-next-line no-console
     console.error("Invalid recipe array");
  
     supportingText =  
-      "Sorry, we have no recipes that match your dietary and time requirements.";
+      "Sorry, we're unable to find recipes that match your dietary and time requirements.";
   }
 
   //uppercase first letter of each dietary

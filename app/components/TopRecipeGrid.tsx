@@ -2,8 +2,14 @@ import Grid from "@mui/material/Grid2";
 import RecipeCardSummary from "./RecipeCardSummary";
 import { Typography } from "@mui/material";
 import postgres from "postgres";
+import Divider from "@mui/material/Divider";
 
 const sql: postgres.Sql = postgres(process.env.DATABASE_URL as string);
+
+interface lowerRecipeGrid {
+  recipeGrid?: string;
+  recipeId?: number;
+} 
 
 //TS interface representing returned data structure
 interface Recipe {
@@ -24,7 +30,7 @@ async function getData(): Promise<Recipe[]> {
   return response;
 }
 
-const TopRecipeGrid = async () => {
+const TopRecipeGrid: React.FC<lowerRecipeGrid>= async () => {
 
   const recipes = await getData();
 
@@ -33,16 +39,18 @@ const TopRecipeGrid = async () => {
      <Grid 
         container 
         spacing={{ xs: 2 }}
-        sx={{paddingTop: "2rem", paddingInline: "1.75rem"}}
+        sx={{paddingBottom: "2rem", marginBottom:"2rem", paddingInline: "1.75rem"}}
         >
           <Grid size={{xs: 12}}>
+
+          <Divider sx={{paddingTop: "2rem"}} variant="middle" />
+
             <Typography
-                sx={{fontWeight: "800", fontSize: {xs: "1.125rem", md: "1.875rem"}, width:"100%", textAlign: "center" }}
+                sx={{fontWeight: "800", fontSize: {xs: "1.125rem", md: "1.875rem"}, width:"100%", textAlign: "center", paddingTop: "2rem" }}
                 >
                 See what everyone&apos;s raving about this month...
             </Typography>
           </Grid>
-
           <Grid size={{xs: 12}} >
             <Typography
               sx={{ display: { xs: "none", sm: "block" }, fontSize: {xs: "1rem", md: "1.25rem"}, width:"100%", textAlign: "center", marginBottom: "1rem"}}
