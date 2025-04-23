@@ -2,7 +2,6 @@ import Grid from "@mui/material/Grid2";
 import RecipeCardSummary from "./RecipeCardSummary";
 import { Typography } from "@mui/material";
 import postgres from "postgres";
-import Divider from "@mui/material/Divider";
 
 const sql: postgres.Sql = postgres(process.env.DATABASE_URL as string);
 
@@ -42,8 +41,6 @@ const TopRecipeGrid: React.FC<lowerRecipeGrid>= async () => {
         sx={{paddingBottom: "2rem", marginBottom:"2rem", paddingInline: "1.75rem"}}
         >
           <Grid size={{xs: 12}}>
-
-          <Divider sx={{paddingTop: "2rem"}} variant="middle" />
 
             <Typography
                 sx={{fontWeight: "800", fontSize: {xs: "1.125rem", md: "1.875rem"}, width:"100%", textAlign: "center", paddingTop: "2rem" }}

@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import TopRecipeGrid from "../components/TopRecipeGrid";
 import { Suspense } from "react";
 import LoadingSkeleton from "../components/LoadingSkeleton";
+import Divider from "@mui/material/Divider";
 
 interface Recipe {
   id: number;
@@ -87,6 +88,7 @@ const Page = async ({
           timeParams={timeParams}
           recipes={recipes}
         />
+         <Divider sx={{paddingTop: "2rem"}} variant="middle" />
         </Suspense>
       </>
     );
@@ -98,6 +100,7 @@ const Page = async ({
         dietaryParams={dietaryParams}
         timeParams={timeParams}
         />
+        <Divider sx={{paddingTop: "2rem"}} variant="middle" />
         <TopRecipeGrid />
       </>
       );
