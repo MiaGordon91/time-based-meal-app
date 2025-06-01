@@ -8,7 +8,7 @@ interface Recipe {
   image_path: string;
   dietary: string[];
   time: string;
-  method: string;
+  method: string[];
   ingredients: string[];
   recipe_summary: string;
 }
