@@ -63,7 +63,7 @@ const RecipeCarouselHeader: React.FC<RecipeCarouselHeaderProps> = ({ text, dieta
                     </Typography>
                 </Box>
         
-                <Box sx={{ borderRadius: "0.5rem", border: "2px solid", padding: "0.75rem", maxWidth: "300px", backgroundColor:"#FFFFFF"}}>
+                <Box sx={{ borderRadius: "0.5rem", border: "2px solid", padding: "0.75rem", backgroundColor:"#FFFFFF"}}>
                     <Typography
                     sx={{
                         fontWeight: 300,

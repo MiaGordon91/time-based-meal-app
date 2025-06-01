@@ -22,9 +22,6 @@ export async function GET(req: Request) {
     const dietaryArray: string[] = dietaryQuery?.split(",").filter((dietary) => 
         dietaryOptions.includes(dietary as typeof dietaryOptions[number])
     ) || ["none"] as string[];
- 
-    console.log("dietaryArray");
-    console.log(dietaryArray);
 
     const timeQuery = searchParams.get("time") ?? "0";
     
@@ -37,19 +34,24 @@ export async function GET(req: Request) {
       console.error("Invalid time query:", timeQuery);
     }
 
-    let response;
-
-     if (!dietaryArray.includes("none")) {
+    let response;   
+    
+    if (!dietaryArray.includes("none") && time != "0") {
       response = await sql`
         SELECT * FROM recipes  
         WHERE dietary && ${dietaryArray}
         AND time = ${time}
         ORDER BY id DESC;`;
-      } else {
+    } else if (dietaryArray.includes("none")) {
       response = await sql`
         SELECT * FROM recipes  
         WHERE time = ${time}
         ORDER BY id DESC;`;
+    } else if (time == "0"){
+      response = await sql`
+        SELECT * FROM recipes  
+        WHERE dietary && ${dietaryArray}
+        ORDER BY RANDOM() LIMIT 3;`;
     }
     
 
