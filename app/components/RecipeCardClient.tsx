@@ -29,7 +29,7 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
     <Card> 
      <CardMedia
          component="img"
-         sx={{ height: {xs: 100, md: 200}, borderRadius: "0.5rem" }}
+         sx={{ height: {xs: 100, md: 300}, borderRadius: "0.5rem" }}
          image={recipeImage}
          alt={recipeName} />
          

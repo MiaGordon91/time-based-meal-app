@@ -9,9 +9,10 @@ interface Recipe {
   image_path: string;
   dietary: string[];
   time: string;
-  method: string;
+  method: string[];
   ingredients: string[];
   recipe_summary: string;
+  servings: string;
 }
 
 async function getRecipe(recipeId: number): Promise<Recipe[]> {
@@ -25,7 +26,7 @@ async function getRecipe(recipeId: number): Promise<Recipe[]> {
     console.error("Invalid recipeId", recipeId);
   }
 
-  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method, ingredients, recipe_summary FROM recipes WHERE id = ${selectedRecipeId}`;
+  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method, ingredients, recipe_summary, servings FROM recipes WHERE id = ${selectedRecipeId}`;
 
   return response;
 }

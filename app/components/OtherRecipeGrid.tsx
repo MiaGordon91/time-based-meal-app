@@ -6,7 +6,7 @@ import postgres from "postgres";
 const sql: postgres.Sql = postgres(process.env.DATABASE_URL as string);
 
 interface lowerRecipeGrid {
-  dietary: string;
+  dietaryParams: string;
   time: string;
   recipeGrid?: string;
   recipeIds: number[];
@@ -19,26 +19,31 @@ interface Recipe {
   image_path: string;
   dietary: string[];
   time: string;
-  method: string;
+  method: string[];
   recipe_summary: string;
 }
 
   //explicitly return functions return value => Promise returning a Recipe interface
-  async function getData(dietary: string, recipeIds: number[]): Promise<Recipe[]> {
-  
+  async function getData(dietaryParams: string, recipeIds: number[]): Promise<Recipe[]> {
+
   // sql injects dietary array to find other recipes and injects fetched recipe ids to exclude from the grid. 
-  const dietaryArray: string[] = dietary?.split(",");  
+  const dietaryOptions = ["lactoseIntolerant", "vegetarian", "vegan", "glutenFree", "none"] as const;
+
+  const dietaryArray: string[] = dietaryParams?.split(",").filter((dietary: string) => 
+        dietaryOptions.includes(dietary as typeof dietaryOptions[number])
+    ) || ["none"] as string[];
+
   
-  if(!dietary.includes("none")){
-    return await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method, recipe_summary FROM recipes WHERE dietary && ${dietaryArray} AND id != ALL(${recipeIds})`;
+  if(!dietaryArray.includes("none")){
+    return await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method, recipe_summary FROM recipes WHERE dietary && ${dietaryArray} AND id != ALL(${recipeIds}) LIMIT 3;`;
   } else {
     return await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method, recipe_summary FROM recipes WHERE id != ALL(${recipeIds}) ORDER BY RANDOM() LIMIT 3;`;
   }
 }
 
-const OtherRecipeGrid: React.FC<lowerRecipeGrid>= async ({dietary, recipeIds}) => {
+const OtherRecipeGrid: React.FC<lowerRecipeGrid>= async ({dietaryParams, recipeIds}) => {
 
-  const recipes = await getData(dietary, recipeIds);
+  const recipes = await getData(dietaryParams, recipeIds);
 
   let mdSize = 0;
 

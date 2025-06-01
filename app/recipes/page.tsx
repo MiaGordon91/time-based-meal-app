@@ -47,7 +47,7 @@ const Page = async ({
 }: {
   searchParams: { dietary: string; time: string };
 }) => {
-  let dietaryParams = searchParams?.dietary || "";
+  const dietaryParams = searchParams?.dietary || "";
   const timeParams = searchParams?.time || "";
 
   const host = headers().get("host");
@@ -75,7 +75,7 @@ const Page = async ({
   }
 
   //uppercase first letter of each dietary
-  dietaryParams = dietaryParams.split(",").map(item => item.substring(0,1).toUpperCase()+item.substring(1)).join(", ");
+  const dietaryParamsUpper = dietaryParams.split(",").map(item => item.substring(0,1).toUpperCase()+item.substring(1)).join(", ");
 
   const fetchedRecipeIds: number[] = []; 
   recipes.map(function(recipe){
@@ -87,12 +87,12 @@ const Page = async ({
       <>
         <RecipeCarousel
           supportingText={supportingText}
-          dietaryParams={dietaryParams}
+          dietaryParams={dietaryParamsUpper}
           timeParams={timeParams}
           recipes={recipes}
         />
          <OtherRecipeGrid 
-            dietary={dietaryParams.toLowerCase()}
+            dietaryParams={dietaryParams}
             time={timeParams}
             recipeIds={fetchedRecipeIds}
             />
@@ -103,7 +103,7 @@ const Page = async ({
         <>
         <RecipeCarousel
         supportingText={supportingText}
-        dietaryParams={dietaryParams}
+        dietaryParams={dietaryParamsUpper}
         timeParams={timeParams}
         />
         <Divider sx={{paddingTop: "2rem"}} variant="middle" />

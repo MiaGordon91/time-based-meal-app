@@ -5,7 +5,7 @@ import CardListTemplate from "./CardListTemplate";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 
 interface RecipeListProps {
-    recipeObject: {id: number, name: string, image_path: string, dietary: string[], time: string, method: string[], ingredients: string[], recipe_summary: string | undefined };
+    recipeObject: {id: number, name: string, image_path: string, dietary: string[], time: string, method: string[], ingredients: string[], recipe_summary: string, servings: string | undefined };
 }
 
  const RecipeList: React.FC<RecipeListProps> = ({recipeObject}) => {
@@ -41,6 +41,11 @@ interface RecipeListProps {
                 sx={{fontWeight: "600", fontSize: {xs: "0.75rem", md: "1rem", lg: "1.25rem"}, paddingBottom: "1.5rem" }}
                 >
                 <AccessTimeFilledIcon sx={{ display:{xs:"none", sm: "inline"}, color:"#FFFFFF", verticalAlign:{ md: "middle", lg: "text-bottom"} }} /> {recipeObject.time} minutes
+            </Typography>
+             <Typography 
+                sx={{fontWeight: "600", fontSize: {xs: "0.75rem", md: "1rem", lg: "1.25rem"}, paddingBottom: "1.5rem" }}
+                >
+               Serves {recipeObject.servings}
             </Typography>
             <Typography 
                 sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, align: "left", paddingBottom: {xs: "1rem", md: "1.5rem"}}}

@@ -37,23 +37,22 @@ export async function GET(req: Request) {
     let response;   
     
     if (!dietaryArray.includes("none") && time != "0") {
-      response = await sql`
+       response = await sql`
         SELECT * FROM recipes  
         WHERE dietary && ${dietaryArray}
         AND time = ${time}
         ORDER BY id DESC;`;
     } else if (dietaryArray.includes("none")) {
-      response = await sql`
+       response = await sql`
         SELECT * FROM recipes  
         WHERE time = ${time}
-        ORDER BY id DESC;`;
-    } else if (time == "0"){
-      response = await sql`
+        ORDER BY id DESC LIMIT 4;`;
+    } else {
+        response = await sql`
         SELECT * FROM recipes  
         WHERE dietary && ${dietaryArray}
         ORDER BY RANDOM() LIMIT 3;`;
     }
-    
 
     return NextResponse.json(response);
   } catch (error) {

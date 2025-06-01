@@ -16,9 +16,11 @@ The application is currently a work in progress.
 A responsive frontend template has been built with data handling and recipe generation. 
 
 A small selection of recipes are stored in a postgreSQL database, to see MealGenie in action the following dietaries and time requirment combinations will fetch recipes to view:
-- Vegetarian - 20 minutes
-- Gluten-Free - 45 minutes
-- Lactose-Intolerant - 20 minutes
+- Vegan - 20 minutes
+- Gluten-Free - 60 minutes
+- Lactose-Intolerant - 30 minutes
+- No dietary requirements with a time selected
+- Any dietary selected with no time requirements
 
 
 ## Technologies Used
