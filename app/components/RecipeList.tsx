@@ -5,7 +5,7 @@ import CardListTemplate from "./CardListTemplate";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 
 interface RecipeListProps {
-    recipeObject: {id: number, name: string, image_path: string, dietary: string[], time: string, method: string, ingredients: string[], recipe_summary: string | undefined };
+    recipeObject: {id: number, name: string, image_path: string, dietary: string[], time: string, method: string[], ingredients: string[], recipe_summary: string | undefined };
 }
 
  const RecipeList: React.FC<RecipeListProps> = ({recipeObject}) => {
@@ -55,8 +55,8 @@ interface RecipeListProps {
         spacing={2}
         sx={{ padding: "20px", justifyContent:"center" }} 
         >
-        <CardListTemplate recipeObject={ingredients}/>
-        <CardListTemplate recipeObject={method}/>
+        <CardListTemplate title={"Ingredients"} recipeObject={ingredients}/>
+        <CardListTemplate  title={"Method"} recipeObject={method}/>
     </Grid>
     </>
   );

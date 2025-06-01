@@ -2,7 +2,7 @@ import React from "react";
 import RecipeCardClient from "./RecipeCardClient";
 
 interface RecipeCardSummaryProp {
-  data: {id: number, name: string, image_path: string, dietary: string[], time: string, method: string, recipe_summary: string} | null;
+  data: {id: number, name: string, image_path: string, dietary: string[], time: string, method: string[], recipe_summary: string} | null;
 } 
 
 const RecipeCardSummary: React.FC<RecipeCardSummaryProp> = ({data}) => {

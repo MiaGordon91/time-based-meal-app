@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import {Box, Card, CardActions, CardContent, CardMedia, Collapse, Link, Typography } from "@mui/material";
+import {Box, Card, CardActions, CardContent, CardMedia, Collapse, Link, List, ListItem, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { ExpandMore } from "@mui/icons-material";
@@ -11,7 +11,7 @@ interface RecipeCardClientProps {
   recipeId?: number,
   recipeName?: string,
   recipeTime?: string,
-  recipeMethod?: string,
+  recipeMethod?: string[],
   recipeImage?: string,
   recipeSummary?: string,
 }
@@ -70,14 +70,24 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
       </ExpandMore>
     </CardActions>
     
-    <Collapse in={expanded} timeout="auto" unmountOnExit>
-      <CardContent>
-        <Typography sx={{ marginBottom: 2, fontWeight: 800, fontSize: {xs: "0.75rem", md: "1.25rem"} }}>Method:</Typography>
-        <Typography sx={{ marginBottom: 2, fontSize: {xs: "0.75rem", md: "1rem"}  }}>
-          {recipeMethod}
-        </Typography>
-      </CardContent>
-    </Collapse>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography sx={{ marginBottom: 2, fontWeight: 800, fontSize: {xs: "0.75rem", md: "1.25rem"} }}>Method:</Typography>
+          <Typography sx={{ marginBottom: 2, fontSize: {xs: "0.75rem", md: "1rem"}  }}>
+            <List>
+              {recipeMethod?.map((item, index) => (
+                <>
+                  <ListItem>
+                      <Typography key={index} sx={{fontSize: {xs: "0.75rem", md: "1rem"}}}>
+                          {item}
+                      </Typography> 
+                  </ListItem>
+              </>
+            ))}
+            </List>
+          </Typography>
+        </CardContent>
+      </Collapse>
     </Card>
     </>
   );

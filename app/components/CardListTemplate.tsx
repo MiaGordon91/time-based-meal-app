@@ -2,17 +2,18 @@ import { Card, CardActions, CardContent, Divider, List, ListItem, Typography } f
 import BackLink from "./BackLink";
 
 interface CardListTemplateProps {
-    recipeObject: string[] | string | undefined;
+    title: string;
+    recipeObject: string[] | undefined;
 }
 
-const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
+const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject, title}) => {
   let list; 
   let header;
 
-  if(Array.isArray(recipeObject)){
+  if(title === "Ingredients"){
    list =  
     <List>
-        {recipeObject.map((item, index) => (
+        {recipeObject?.map((item, index) => (
         <>
         <Divider />
             <ListItem>
@@ -30,12 +31,20 @@ const CardListTemplate: React.FC<CardListTemplateProps> = ({recipeObject}) => {
   else {
     list = 
     <>
+    <Divider />    
     <List>
-        <Divider />
-        <Typography sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, paddingTop: "1.25rem", padding: "2rem"}}>
-            {recipeObject}
-        </Typography>        
+         {recipeObject?.map((item, index) => (
+         <>
+          <Typography key={index} sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, paddingTop: "1.25rem", paddingLeft: "1rem", fontWeight: 700}}>
+            Step {index + 1} 
+        </Typography>  
+        <Typography key={index} sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, padding: "1rem"}}>
+            {item}
+        </Typography>  
+         </>     
+         ))} 
     </List>
+    
     <CardActions 
         sx={{ 
             padding: "1.75rem",
