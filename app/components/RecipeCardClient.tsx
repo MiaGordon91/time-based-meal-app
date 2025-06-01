@@ -37,21 +37,23 @@ const RecipeCardClient: React.FC<RecipeCardClientProps> = ({recipeId,recipeName,
           boxShadow: 4,
           borderTop: "1px solid",
           borderBottom: "1px solid",
-          borderColor: "divider",  
+          borderColor: "divider", 
+          backgroundColor: "#f5f5f5", 
           }}>
 
           <Link href={`/recipes/recipe/${recipeId}`} sx={{color: "inherit"}}>
             <CardContent sx={{ paddingBottom: "0rem" }}>
-              <Typography sx={{ fontSize: {xs: "0.75rem", sm:"1rem", md: "1.25rem"}, fontWeight: 700, width:"100%", paddingBottom: "0.5rem"}}>
+              <Typography sx={{ fontSize: {xs: "0.75rem", sm:"1rem", md: "1.25rem"}, fontWeight: 700, width:"100%", paddingBottom: "0.75rem"}}>
                 {recipeName}
               </Typography>
 
-              <Typography sx={{ fontSize: {xs: "0.75rem", md: "1rem"} }}> <AccessTimeFilledIcon sx={{ display:{xs:"none", sm: "inline"}, color: pink[500]}} /> {recipeTime} mins </Typography>
+              <Typography sx={{ fontSize: {xs: "0.75rem", md: "1rem"} }}> <AccessTimeFilledIcon sx={{ display:{xs:"none", sm: "inline"}, color: pink[400]}} /> {recipeTime} mins 
+              </Typography>
       
             </CardContent>
            </Link>
            
-           <CardContent sx={{ display: { xs: "none", sm: "block" }, height:{sm:80, md:120} }}>
+           <CardContent sx={{ display: { xs: "none", sm: "block" }, height:{sm:80, md:80}, paddingTop: "0rem" }}>
              <Typography sx={{ fontSize: {xs: "0.75rem", md: "1rem"} }}>
                {recipeSummary}
              </Typography>

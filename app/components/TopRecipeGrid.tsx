@@ -29,7 +29,7 @@ async function getData(): Promise<Recipe[]> {
   return response;
 }
 
-const TopRecipeGrid: React.FC<lowerRecipeGrid>= async () => {
+const TopRecipeGrid: React.FC<lowerRecipeGrid> = async () => {
 
   const recipes = await getData();
 

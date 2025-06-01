@@ -48,13 +48,13 @@ const RecipeCarousel: React.FC<RecipeCarouselProps> = ({supportingText, dietaryP
       <>
         <Grid
           container
-          sx={{justifyContent:"center", padding:{ md:"1.75rem" } }}
+          sx={{justifyContent:"center", padding:{ md:"1.75rem"} }}
           >
             <Grid size={12} sx={{justifyContent:"center", padding: {xs: "1rem", sm:"1.75rem"}}}>
             <RecipeCarouselHeader text={supportingText} dietaryParams={dietaryParams} timeParams={timeParams} />
             </Grid>
               {Object.entries(recipes).map(([index,recipe]) => (
-                <Grid key={index} size={{xs: 6, md: mdSize}} sx={{ maxWidth: "600px", padding: {xs:"15px", md:"20px" } }}>
+                <Grid key={index} size={{xs: 6, md: mdSize}} sx={{ maxWidth: "600px", padding: {xs:"15px", md:"20px" }, paddingTop:{md:"1.75rem" } }}>
                   <RecipeCardSummary key={index} data={recipe}/>
                 </Grid> 
               ))}

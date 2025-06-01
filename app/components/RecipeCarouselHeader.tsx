@@ -30,11 +30,12 @@ const RecipeCarouselHeader: React.FC<RecipeCarouselHeaderProps> = ({ text, dieta
                         fontWeight: 700,
                         fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2.25rem" },
                         textAlign: "center",
-                        paddingBottom: "0.5rem"
                     }}
                     >
                     Recipes for you
                     </Typography>
+
+                    <Typography sx={{fontWeight: 500, fontSize: {xs: "1rem", md: "1.25rem"}, paddingTop:{xs:"0.5rem", sm:"0.75rem"}, justifyContent: "center", textAlign: "center"}}>{text}</Typography>
                 </Grid>
             </Grid>
             
@@ -50,7 +51,7 @@ const RecipeCarouselHeader: React.FC<RecipeCarouselHeaderProps> = ({ text, dieta
                 margin: "0 auto",
             }}
             >
-                <Box sx={{ borderRadius: "0.5rem", border: "2px solid", padding: "0.5rem", maxWidth: "300px"}}>
+                <Box sx={{ borderRadius: "0.5rem", border: "2px solid", padding: "0.75rem", maxWidth: "300px", backgroundColor:"#FFFFFF"}}>
                     <Typography
                     sx={{
                         fontWeight: 300,
@@ -62,7 +63,7 @@ const RecipeCarouselHeader: React.FC<RecipeCarouselHeaderProps> = ({ text, dieta
                     </Typography>
                 </Box>
         
-                <Box sx={{ borderRadius: "0.5rem", border: "2px solid", padding: "0.5rem", maxWidth: "300px" }}>
+                <Box sx={{ borderRadius: "0.5rem", border: "2px solid", padding: "0.75rem", maxWidth: "300px", backgroundColor:"#FFFFFF"}}>
                     <Typography
                     sx={{
                         fontWeight: 300,
@@ -73,10 +74,8 @@ const RecipeCarouselHeader: React.FC<RecipeCarouselHeaderProps> = ({ text, dieta
                     Dietary: {dietaryParams?.replace(/([A-Z])/g, " $1")}
                     </Typography>
                 </Box>
+        
             </Grid>
-       
-           
-            <Typography sx={{fontWeight: 500, fontSize: {xs: "1rem", md: "1.25rem"}, paddingTop:{xs:"0.5rem", sm:"1rem", md:"1.5rem", lg:"2rem"}, justifyContent: "center", textAlign: "center"}}>{text}</Typography>
             </>
         );
         } else {

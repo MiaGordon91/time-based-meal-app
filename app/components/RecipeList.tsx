@@ -3,7 +3,6 @@ import Grid from "@mui/material/Grid2";
 import React from "react";
 import CardListTemplate from "./CardListTemplate";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
-import { pink } from "@mui/material/colors";
 
 interface RecipeListProps {
     recipeObject: {id: number, name: string, image_path: string, dietary: string[], time: string, method: string, ingredients: string[], recipe_summary: string | undefined };
@@ -19,7 +18,7 @@ interface RecipeListProps {
     <Grid 
     container 
     spacing={2} 
-    sx={{padding:"0.5rem", backgroundColor: "#f5f5f5", justifyContent: "center"}}
+    sx={{padding:"0.5rem", backgroundColor: "#ef9a9a", justifyContent: "center"}}
     >   
         <Grid sx={{ maxWidth: "400px", padding: "20px" }}>
             <Card sx={{ boxShadow: "none", maxWidth: "400px", margin: "0 auto" }}> 
@@ -41,7 +40,7 @@ interface RecipeListProps {
             <Typography 
                 sx={{fontWeight: "600", fontSize: {xs: "0.75rem", md: "1rem", lg: "1.25rem"}, paddingBottom: "1.5rem" }}
                 >
-                <AccessTimeFilledIcon sx={{ display:{xs:"none", sm: "inline"}, color: pink[500], verticalAlign:{ md: "middle", lg: "text-bottom"} }} /> {recipeObject.time} minutes
+                <AccessTimeFilledIcon sx={{ display:{xs:"none", sm: "inline"}, color:"#FFFFFF", verticalAlign:{ md: "middle", lg: "text-bottom"} }} /> {recipeObject.time} minutes
             </Typography>
             <Typography 
                 sx={{fontSize: {xs: "0.75rem", md: "1.25rem"}, align: "left", paddingBottom: {xs: "1rem", md: "1.5rem"}}}
