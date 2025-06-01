@@ -77,6 +77,11 @@ const Page = async ({
   //uppercase first letter of each dietary
   dietaryParams = dietaryParams.split(",").map(item => item.substring(0,1).toUpperCase()+item.substring(1)).join(", ");
 
+  const fetchedRecipeIds: number[] = []; 
+  recipes.map(function(recipe){
+    return fetchedRecipeIds.push(recipe.id);
+  });
+
   if(recipes.length > 0) {
     return (
       <>
@@ -89,6 +94,7 @@ const Page = async ({
          <OtherRecipeGrid 
             dietary={dietaryParams.toLowerCase()}
             time={timeParams}
+            recipeIds={fetchedRecipeIds}
             />
       </>
     );

@@ -37,12 +37,21 @@ export async function GET(req: Request) {
       console.error("Invalid time query:", timeQuery);
     }
 
-    const response = await sql`
-      SELECT * FROM recipes  
-      WHERE dietary && ${dietaryArray}
-      AND time = ${time}
-      ORDER BY id DESC;
-    `;
+    let response;
+
+     if (!dietaryArray.includes("none")) {
+      response = await sql`
+        SELECT * FROM recipes  
+        WHERE dietary && ${dietaryArray}
+        AND time = ${time}
+        ORDER BY id DESC;`;
+      } else {
+      response = await sql`
+        SELECT * FROM recipes  
+        WHERE time = ${time}
+        ORDER BY id DESC;`;
+    }
+    
 
     return NextResponse.json(response);
   } catch (error) {

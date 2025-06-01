@@ -9,7 +9,7 @@ interface lowerRecipeGrid {
   dietary: string;
   time: string;
   recipeGrid?: string;
-  recipeId?: number;
+  recipeIds: number[];
 } 
 
 //TS interface representing returned data structure
@@ -23,19 +23,22 @@ interface Recipe {
   recipe_summary: string;
 }
 
-//explicitly return functions return value => Promise returning a Recipe interface
-async function getData(dietary: string, time: string): Promise<Recipe[]> {
+  //explicitly return functions return value => Promise returning a Recipe interface
+  async function getData(dietary: string, recipeIds: number[]): Promise<Recipe[]> {
   
-  const dietaryArray: string[] = dietary?.split(",");
-
-  const response: Recipe[] = await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method, recipe_summary FROM recipes WHERE dietary && ${dietaryArray} AND time != ${time}`;
-
-  return response;
+  // sql injects dietary array to find other recipes and injects fetched recipe ids to exclude from the grid. 
+  const dietaryArray: string[] = dietary?.split(",");  
+  
+  if(!dietary.includes("none")){
+    return await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method, recipe_summary FROM recipes WHERE dietary && ${dietaryArray} AND id != ALL(${recipeIds})`;
+  } else {
+    return await sql<Recipe[]>`SELECT id, name, image_path, dietary, time, method, recipe_summary FROM recipes WHERE id != ALL(${recipeIds}) ORDER BY RANDOM() LIMIT 3;`;
+  }
 }
 
-const TopRecipeGrid: React.FC<lowerRecipeGrid>= async ({dietary, time}) => {
+const OtherRecipeGrid: React.FC<lowerRecipeGrid>= async ({dietary, recipeIds}) => {
 
-  const recipes = await getData(dietary, time);
+  const recipes = await getData(dietary, recipeIds);
 
   let mdSize = 0;
 
@@ -93,4 +96,4 @@ const TopRecipeGrid: React.FC<lowerRecipeGrid>= async ({dietary, time}) => {
   );
 };
 
-export default TopRecipeGrid;
+export default OtherRecipeGrid;
