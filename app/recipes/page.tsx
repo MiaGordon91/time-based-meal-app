@@ -1,9 +1,8 @@
 import RecipeCarousel from "../components/RecipeCarousel";
 import { headers } from "next/headers";
 import TopRecipeGrid from "../components/TopRecipeGrid";
-import { Suspense } from "react";
-import LoadingSkeleton from "../components/LoadingSkeleton";
 import Divider from "@mui/material/Divider";
+import OtherRecipeGrid from "../components/OtherRecipeGrid";
 
 interface Recipe {
   id: number;
@@ -65,7 +64,7 @@ const Page = async ({
   if (isRecipeArray(jsonResponse)) {
     recipes = jsonResponse;
   
-    supportingText = "Here's a selection of carefully selected meal ideas suited to your dietary and time preferences.";
+    supportingText = "Here's a selection of carefully selected meal ideas suited to your dietary and time requirements";
   
   } else {
     // eslint-disable-next-line no-console
@@ -81,15 +80,16 @@ const Page = async ({
   if(recipes.length > 0) {
     return (
       <>
-        <Suspense fallback={<LoadingSkeleton/>}>
         <RecipeCarousel
           supportingText={supportingText}
           dietaryParams={dietaryParams}
           timeParams={timeParams}
           recipes={recipes}
         />
-         <Divider sx={{paddingTop: "2rem"}} variant="middle" />
-        </Suspense>
+         <OtherRecipeGrid 
+            dietary={dietaryParams.toLowerCase()}
+            time={timeParams}
+            />
       </>
     );
     } else {
